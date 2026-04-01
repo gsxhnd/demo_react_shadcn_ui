@@ -10,9 +10,8 @@
 
 ### UI 组件库
 
-- **shadcn/ui**: 无头组件库，基于 Radix UI
+- **shadcn/ui**: 无头组件库，基于 Base UI
 - **Tailwind CSS**: 原子化 CSS 框架
-- **SCSS**: CSS 预处理器，用于复杂样式和全局主题
 
 ### 状态管理
 

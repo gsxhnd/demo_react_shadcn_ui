@@ -6,26 +6,15 @@
 
 **目标**: 完成项目基础架构和核心依赖配置
 
-#### 已完成 ✅
-
 - [x] 初始化 Vite + React + TypeScript 项目
 - [x] 配置 ESLint 和 Prettier
 - [x] 配置 React Compiler
+- [x] 安装并配置 shadcn/ui
+- [x] 配置 Tailwind CSS
+- [x] 配置路径别名（@/）
+- [x] 创建基础目录结构
 
-#### 进行中 🚧
-
-- [ ] 安装并配置 shadcn/ui
-- [ ] 配置 Tailwind CSS
-- [ ] 配置 SCSS 支持
-- [ ] 设置全局样式文件结构
-
-#### 待开始 📋
-
-- [ ] 配置路径别名（@/）
-- [ ] 创建基础目录结构
-- [ ] 配置环境变量
-
-**预计完成时间**: 2026-04-05
+**完成时间**: 2026-04-01
 
 ---
 
@@ -35,14 +24,18 @@
 
 #### 任务清单
 
-- [ ] 安装 react-router-dom v7
+- [x] 安装 react-router-dom v7
 - [ ] 创建路由配置文件
 - [ ] 实现路由懒加载
 - [ ] 创建基础页面组件（首页、404）
-- [ ] 安装 Redux Toolkit
+- [x] 安装 Redux Toolkit
 - [ ] 配置 Redux Store
-- [ ] 创建示例 slice（user、theme）
+- [ ] 创建示例 slice（user theme）
 - [ ] 集成 Redux DevTools
+
+#### 进行中 🚧
+
+#### 待开始 📋
 
 **预计完成时间**: 2026-04-12
 
