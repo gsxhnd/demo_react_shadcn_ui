@@ -65,7 +65,7 @@ src/
 │   └── slices/        # Redux slices
 ├── hooks/             # 自定义 React Hooks
 ├── services/          # API 服务层
-│   ├── api.ts         # axios 实例配置
+│   ├── api.ts         # fetch 实例配置
 │   └── endpoints/     # API 端点
 ├── locales/           # 国际化文件
 │   ├── zh/
@@ -200,7 +200,7 @@ i18n.changeLanguage('en');
 
 ### 6.1 请求封装
 
-- 统一的 axios 实例
+- 统一的 fetch 实例
 - 请求/响应拦截器
 - 错误处理
 - Token 自动注入

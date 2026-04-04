@@ -46,7 +46,7 @@
 #### 任务清单
 
 - [ ] 安装 @tanstack/react-query
-- [ ] 安装 lucide-react
+- [x] 安装 lucide-react
 - [ ] 配置 QueryClient
 - [ ] 封装 API 请求方法
 - [ ] 创建请求/响应拦截器
