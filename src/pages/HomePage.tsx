@@ -1,57 +1,65 @@
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
+import { LanguageTransition } from "@/components/ui/language-transition";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setTheme, toggleTheme } from "@/store/slices/themeSlice";
 import { Sun, Moon, Monitor, ArrowRight, Database, Image } from "lucide-react";
 
 function HomePage() {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { theme } = useAppSelector((state) => state.theme);
   const { user } = useAppSelector((state) => state.user);
 
   const themeOptions = [
-    { value: "light", icon: Sun, label: "浅色" },
-    { value: "dark", icon: Moon, label: "深色" },
-    { value: "system", icon: Monitor, label: "系统" },
+    { value: "light", icon: Sun, label: t("theme.light") || "浅色" },
+    { value: "dark", icon: Moon, label: t("theme.dark") || "深色" },
+    { value: "system", icon: Monitor, label: t("theme.system") || "系统" },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+    <LanguageTransition className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       <div className="container mx-auto px-4 py-16">
+        <header className="text-center mb-12 flex justify-end mb-4">
+          <LanguageSwitcher />
+        </header>
+
         <header className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4 text-slate-900 dark:text-slate-50">
-            欢迎使用 React + shadcn/ui
+            {t("home.welcome")} React + shadcn/ui
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-400">
-            基于 Vite + TypeScript + Tailwind CSS 构建的现代化 React 应用
+            {t("home.description") || "基于 Vite + TypeScript + Tailwind CSS 构建的现代化 React 应用"}
           </p>
         </header>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
-              用户信息
+              {t("userInfo.title") || "用户信息"}
             </h2>
             {user ? (
               <div className="space-y-2">
                 <p className="text-slate-600 dark:text-slate-300">
-                  用户名: <span className="font-medium">{user.name}</span>
+                  {t("userInfo.name") || "用户名"}: <span className="font-medium">{user.name}</span>
                 </p>
                 <p className="text-slate-600 dark:text-slate-300">
-                  邮箱: <span className="font-medium">{user.email}</span>
+                  {t("userInfo.email") || "邮箱"}: <span className="font-medium">{user.email}</span>
                 </p>
               </div>
             ) : (
-              <p className="text-slate-500 dark:text-slate-400">未登录</p>
+              <p className="text-slate-500 dark:text-slate-400">{t("userInfo.notLoggedIn") || "未登录"}</p>
             )}
           </section>
 
           <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
-              主题设置
+              {t("theme.title") || "主题设置"}
             </h2>
             <p className="text-slate-600 dark:text-slate-300 mb-4">
-              当前主题: <span className="font-medium capitalize">{theme}</span>
+              {t("theme.current") || "当前主题"}: <span className="font-medium capitalize">{theme}</span>
             </p>
             <div className="flex flex-wrap gap-2">
               {themeOptions.map(({ value, icon: Icon, label }) => (
@@ -72,35 +80,34 @@ function HomePage() {
                 size="sm"
                 onClick={() => dispatch(toggleTheme())}
               >
-                切换主题
+                {t("theme.switch") || "切换主题"}
               </Button>
             </div>
           </section>
 
-          {/* v0.3.0 新功能卡片 */}
           <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
-              v0.3.0 新功能
+              {t("home.newFeatures") || "v0.4.0 新功能"}
             </h2>
             <p className="text-slate-600 dark:text-slate-300 mb-4">
-              数据请求与图标系统
+              {t("home.i18nFeatures") || "国际化支持（中英日韩）"}
             </p>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <Database className="w-5 h-5 text-blue-600" />
                 <span className="text-sm text-slate-600 dark:text-slate-300">
-                  React Query 数据请求
+                  {t("home.reactQuery") || "React Query 数据请求"}
                 </span>
               </div>
               <div className="flex items-center gap-3">
                 <Image className="w-5 h-5 text-green-600" />
                 <span className="text-sm text-slate-600 dark:text-slate-300">
-                  Lucide React 图标库
+                  {t("home.lucideIcons") || "Lucide React 图标库"}
                 </span>
               </div>
               <Link to="/api-demo">
                 <Button className="w-full mt-2">
-                  查看演示
+                  {t("home.viewDemo") || "查看演示"}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
@@ -115,7 +122,7 @@ function HomePage() {
           </p>
         </footer>
       </div>
-    </div>
+    </LanguageTransition>
   );
 }
 

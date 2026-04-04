@@ -6,6 +6,7 @@ import { store } from "@/store";
 import { initTheme } from "@/store/slices/themeSlice";
 import { queryClient } from "@/lib/queryClient";
 import AppRouter from "@/AppRouter";
+import "@/i18n";
 import "./index.css";
 
 initTheme();
