@@ -1,13 +1,13 @@
+import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
-import { useDispatch, useSelector } from "react-redux";
-// import type { RootState, AppDispatch } from "@/store";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setTheme, toggleTheme } from "@/store/slices/themeSlice";
-import { Sun, Moon, Monitor } from "lucide-react";
+import { Sun, Moon, Monitor, ArrowRight, Database, Image } from "lucide-react";
 
 function HomePage() {
-  const dispatch = useDispatch<AppDispatch>();
-  const { theme } = useSelector((state: RootState) => state.theme);
-  const { user } = useSelector((state: RootState) => state.user);
+  const dispatch = useAppDispatch();
+  const { theme } = useAppSelector((state) => state.theme);
+  const { user } = useAppSelector((state) => state.user);
 
   const themeOptions = [
     { value: "light", icon: Sun, label: "浅色" },
@@ -27,7 +27,7 @@ function HomePage() {
           </p>
         </header>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
               用户信息
@@ -74,6 +74,36 @@ function HomePage() {
               >
                 切换主题
               </Button>
+            </div>
+          </section>
+
+          {/* v0.3.0 新功能卡片 */}
+          <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
+              v0.3.0 新功能
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 mb-4">
+              数据请求与图标系统
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <Database className="w-5 h-5 text-blue-600" />
+                <span className="text-sm text-slate-600 dark:text-slate-300">
+                  React Query 数据请求
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Image className="w-5 h-5 text-green-600" />
+                <span className="text-sm text-slate-600 dark:text-slate-300">
+                  Lucide React 图标库
+                </span>
+              </div>
+              <Link to="/api-demo">
+                <Button className="w-full mt-2">
+                  查看演示
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
             </div>
           </section>
         </div>

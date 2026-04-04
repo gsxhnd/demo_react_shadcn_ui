@@ -6,6 +6,7 @@ import {
 
 const HomePage = lazy(() => import("@/pages/HomePage"));
 const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
+const ApiDemoPage = lazy(() => import("@/pages/ApiDemoPage"));
 
 export interface RouteMeta {
     title?: string;
@@ -21,6 +22,13 @@ const routes: AppRouteObject[] = [
         element: <HomePage />,
         meta: {
             title: "首页",
+        },
+    },
+    {
+        path: "/api-demo",
+        element: <ApiDemoPage />,
+        meta: {
+            title: "API 演示",
         },
     },
     {
