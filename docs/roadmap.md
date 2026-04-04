@@ -75,17 +75,16 @@
 
 ---
 
-### v0.5.0 - UI 组件库完善 📋
+### v0.5.0 - UI 组件库完善 ✅
 
 **目标**: 集成常用 shadcn/ui 组件
 
 #### 任务清单
 
-- [ ] 创建组件使用示例页面
-- [ ] 编写组件文档
+- [x] 创建组件使用示例页面
+- [x] 编写组件文档
 
-**预计完成时间**: 2026-05-10
-
+**完成时间**: 2026-04-05
 ---
 
 ### v1.0.0 - 正式版本 📋
@@ -206,6 +205,23 @@ chore: 构建/工具链更新
 ## 📝 更新日志
 
 ### 2026-04-05
+
+- 完成 v0.5.0 UI 组件库完善功能
+  - 创建组件使用示例页面（/components）
+  - 创建组件文档页面（/components/docs）
+  - 集成所有 shadcn/ui 组件示例：
+    - Button（按钮）
+    - Input / Textarea / InputGroup（输入框）
+    - Dialog（对话框）
+    - Select / Combobox（选择器）
+    - Tabs（选项卡）
+    - Switch（开关）
+    - Separator（分隔线）
+    - Skeleton（骨架屏）
+    - Tooltip（工具提示）
+    - Context Menu（右键菜单）
+  - 完整的组件 API 文档和代码示例
+  - 更新首页导航，添加组件示例和文档入口
 
 - 完成 v0.4.0 国际化支持功能
   - 安装并配置 react-i18next 和 i18next-browser-languagedetector

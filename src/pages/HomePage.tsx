@@ -5,7 +5,7 @@ import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { LanguageTransition } from "@/components/ui/language-transition";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setTheme, toggleTheme } from "@/store/slices/themeSlice";
-import { Sun, Moon, Monitor, ArrowRight, Database, Image } from "lucide-react";
+import { Sun, Moon, Monitor, ArrowRight, Database, Image, Layout, BookOpen } from "lucide-react";
 
 function HomePage() {
   const { t } = useTranslation();
@@ -87,7 +87,42 @@ function HomePage() {
 
           <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
-              {t("home.newFeatures") || "v0.4.0 新功能"}
+              v0.5.0 新功能
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 mb-4">
+              UI 组件库完善
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <Layout className="w-5 h-5 text-purple-600" />
+                <span className="text-sm text-slate-600 dark:text-slate-300">
+                  shadcn/ui 组件示例
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <BookOpen className="w-5 h-5 text-orange-600" />
+                <span className="text-sm text-slate-600 dark:text-slate-300">
+                  完整的组件文档
+                </span>
+              </div>
+              <Link to="/components">
+                <Button className="w-full mt-2">
+                  查看组件示例
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+              <Link to="/components/docs">
+                <Button variant="outline" className="w-full mt-2">
+                  <BookOpen className="w-4 h-4 mr-2" />
+                  查看文档
+                </Button>
+              </Link>
+            </div>
+          </section>
+
+          <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
+              v0.4.0 功能
             </h2>
             <p className="text-slate-600 dark:text-slate-300 mb-4">
               {t("home.i18nFeatures") || "国际化支持（中英日韩）"}
