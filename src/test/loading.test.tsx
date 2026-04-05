@@ -83,7 +83,7 @@ describe("loading hooks", () => {
     it("should hide loader when loading stops", () => {
       const { result, rerender } = renderHook(
         ({ isLoading }) => useDelayedLoading(isLoading, 300),
-        { initialProps: { isLoading: true } }
+        { initialProps: { isLoading: true } },
       );
 
       act(() => {

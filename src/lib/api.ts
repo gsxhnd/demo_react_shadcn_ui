@@ -2,8 +2,17 @@
  * API 请求封装
  */
 import type { RequestConfig, ApiResponse } from "./apiInterceptor";
-import { requestInterceptorManager, responseInterceptorManager, cancelRequest } from "./apiInterceptor";
-import { ErrorType, handleFetchError, createAppError, isAppError } from "./error-handler";
+import {
+  requestInterceptorManager,
+  responseInterceptorManager,
+  cancelRequest,
+} from "./apiInterceptor";
+import {
+  ErrorType,
+  handleFetchError,
+  createAppError,
+  isAppError,
+} from "./error-handler";
 import type { AppError } from "./error-handler";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
@@ -61,7 +70,7 @@ async function request<T>(config: RequestConfig): Promise<ApiResponse<T>> {
       const appError = createAppError(
         (data as { message?: string })?.message || response.statusText,
         ErrorType.UNKNOWN,
-        { statusCode: response.status }
+        { statusCode: response.status },
       );
       const handledError = responseInterceptorManager.executeError(appError);
       throw handledError;
@@ -71,7 +80,9 @@ async function request<T>(config: RequestConfig): Promise<ApiResponse<T>> {
     return result as ApiResponse<T>;
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {
-      const abortError = createAppError("请求已取消", ErrorType.CLIENT, { isRetryable: false });
+      const abortError = createAppError("请求已取消", ErrorType.CLIENT, {
+        isRetryable: false,
+      });
       throw abortError;
     }
 
@@ -108,7 +119,11 @@ function handleError(error: AppError) {
 }
 
 export const api = {
-  get<T>(url: string, params?: Record<string, string | number | boolean | undefined | null>, config?: Partial<RequestConfig>) {
+  get<T>(
+    url: string,
+    params?: Record<string, string | number | boolean | undefined | null>,
+    config?: Partial<RequestConfig>,
+  ) {
     return request<T>({ url, method: "GET", params, ...config });
   },
   post<T>(url: string, data?: unknown, config?: Partial<RequestConfig>) {
@@ -120,7 +135,11 @@ export const api = {
   patch<T>(url: string, data?: unknown, config?: Partial<RequestConfig>) {
     return request<T>({ url, method: "PATCH", data, ...config });
   },
-  delete<T>(url: string, params?: Record<string, string | number | boolean | undefined | null>, config?: Partial<RequestConfig>) {
+  delete<T>(
+    url: string,
+    params?: Record<string, string | number | boolean | undefined | null>,
+    config?: Partial<RequestConfig>,
+  ) {
     return request<T>({ url, method: "DELETE", params, ...config });
   },
   request,
@@ -141,10 +160,15 @@ export interface PaginatedResponse<T> {
   totalPages: number;
 }
 
-export function createPaginationParams(page = 1, pageSize = 10): PaginationParams {
+export function createPaginationParams(
+  page = 1,
+  pageSize = 10,
+): PaginationParams {
   return { page, pageSize };
 }
 
-export function parsePaginatedResponse<T>(response: ApiResponse<PaginatedResponse<T>>): PaginatedResponse<T> {
+export function parsePaginatedResponse<T>(
+  response: ApiResponse<PaginatedResponse<T>>,
+): PaginatedResponse<T> {
   return response.data;
 }

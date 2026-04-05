@@ -7,7 +7,16 @@ interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallbackSrc?: string;
 }
 
-export function LazyImage({ src, alt, className, placeholder, fallbackSrc, onLoad, onError, ...props }: LazyImageProps) {
+export function LazyImage({
+  src,
+  alt,
+  className,
+  placeholder,
+  fallbackSrc,
+  onLoad,
+  onError,
+  ...props
+}: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const [error, setError] = useState(false);
@@ -21,7 +30,7 @@ export function LazyImage({ src, alt, className, placeholder, fallbackSrc, onLoa
           observer.disconnect();
         }
       },
-      { rootMargin: "100px", threshold: 0 }
+      { rootMargin: "100px", threshold: 0 },
     );
 
     if (imgRef.current) {
@@ -42,10 +51,16 @@ export function LazyImage({ src, alt, className, placeholder, fallbackSrc, onLoa
   };
 
   return (
-    <div ref={imgRef} className={cn("relative overflow-hidden", className)} {...props}>
+    <div
+      ref={imgRef}
+      className={cn("relative overflow-hidden", className)}
+      {...props}
+    >
       {!isLoaded && !error && (
         <div className="absolute inset-0 flex items-center justify-center bg-muted">
-          {placeholder || <div className="w-full h-full bg-muted animate-pulse" />}
+          {placeholder || (
+            <div className="w-full h-full bg-muted animate-pulse" />
+          )}
         </div>
       )}
       {isInView && (
@@ -54,7 +69,10 @@ export function LazyImage({ src, alt, className, placeholder, fallbackSrc, onLoa
           alt={alt}
           onLoad={handleLoad}
           onError={handleError}
-          className={cn("w-full h-full object-cover transition-opacity duration-300", isLoaded ? "opacity-100" : "opacity-0")}
+          className={cn(
+            "w-full h-full object-cover transition-opacity duration-300",
+            isLoaded ? "opacity-100" : "opacity-0",
+          )}
         />
       )}
       {error && !fallbackSrc && (
@@ -75,9 +93,18 @@ interface VirtualListProps<T> {
   className?: string;
 }
 
-export function VirtualList<T>({ items, height, itemHeight, renderItem, overscan = 3, className }: VirtualListProps<T>) {
+export function VirtualList<T>({
+  items,
+  height,
+  itemHeight,
+  renderItem,
+  overscan = 3,
+  className,
+}: VirtualListProps<T>) {
   const [scrollTop, setScrollTop] = useState(0);
-  const [containerHeight, setContainerHeight] = useState(typeof height === "number" ? height : 0);
+  const [containerHeight, setContainerHeight] = useState(
+    typeof height === "number" ? height : 0,
+  );
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -96,7 +123,10 @@ export function VirtualList<T>({ items, height, itemHeight, renderItem, overscan
   const startIndex = Math.max(0, Math.floor(scrollTop / itemHeight) - overscan);
   const endIndex = Math.min(
     items.length - 1,
-    Math.ceil((scrollTop + (typeof height === "number" ? height : containerHeight)) / itemHeight) + overscan
+    Math.ceil(
+      (scrollTop + (typeof height === "number" ? height : containerHeight)) /
+        itemHeight,
+    ) + overscan,
   );
 
   const visibleItems = items.slice(startIndex, endIndex + 1);
@@ -138,12 +168,15 @@ export function useThrottle<T>(value: T, interval: number): T {
   const lastRan = useRef(Date.now());
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-      if (Date.now() - lastRan.current >= interval) {
-        setThrottledValue(value);
-        lastRan.current = Date.now();
-      }
-    }, interval - (Date.now() - lastRan.current));
+    const handler = setTimeout(
+      () => {
+        if (Date.now() - lastRan.current >= interval) {
+          setThrottledValue(value);
+          lastRan.current = Date.now();
+        }
+      },
+      interval - (Date.now() - lastRan.current),
+    );
 
     return () => clearTimeout(handler);
   }, [value, interval]);

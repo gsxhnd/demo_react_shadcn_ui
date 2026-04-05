@@ -34,7 +34,9 @@ function LanguageSwitcher() {
       <DropdownMenuTrigger className="outline-none">
         <Button variant="outline" size="sm" className="gap-2">
           <Globe className="size-4" />
-          <span className="hidden sm:inline">{currentLanguage?.nativeName}</span>
+          <span className="hidden sm:inline">
+            {currentLanguage?.nativeName}
+          </span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[160px]">
@@ -46,7 +48,7 @@ function LanguageSwitcher() {
               onClick={() => i18n.changeLanguage(lang.code)}
               className={cn(
                 "flex items-center justify-between gap-4 cursor-pointer",
-                isSelected && "bg-accent/50"
+                isSelected && "bg-accent/50",
               )}
             >
               <span className="flex flex-col">
@@ -79,7 +81,9 @@ export function SiteHeader({ showNav = true }: SiteHeaderProps) {
         <div className="flex items-center gap-6">
           <Link to="/" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">R</span>
+              <span className="text-primary-foreground font-bold text-sm">
+                R
+              </span>
             </div>
             <span className="font-semibold text-lg hidden sm:inline">
               React 模板
@@ -89,8 +93,10 @@ export function SiteHeader({ showNav = true }: SiteHeaderProps) {
           {showNav && (
             <nav className="flex items-center gap-1">
               {navItems.map((item) => {
-                const isActive = location.pathname === item.path ||
-                  (item.path !== "/" && location.pathname.startsWith(item.path));
+                const isActive =
+                  location.pathname === item.path ||
+                  (item.path !== "/" &&
+                    location.pathname.startsWith(item.path));
                 return (
                   <Link
                     key={item.path}
@@ -99,7 +105,7 @@ export function SiteHeader({ showNav = true }: SiteHeaderProps) {
                       "px-3 py-2 text-sm font-medium rounded-md transition-colors",
                       isActive
                         ? "bg-accent text-accent-foreground"
-                        : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                        : "text-muted-foreground hover:text-foreground hover:bg-accent/50",
                     )}
                   >
                     {item.label}

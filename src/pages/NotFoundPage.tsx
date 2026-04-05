@@ -12,7 +12,9 @@ function NotFoundContent() {
     <div className="min-h-[60vh] flex items-center justify-center">
       <div className="text-center px-4">
         <div className="mb-8">
-          <h1 className="text-9xl font-bold text-slate-200 dark:text-slate-700">404</h1>
+          <h1 className="text-9xl font-bold text-slate-200 dark:text-slate-700">
+            404
+          </h1>
         </div>
         <h2 className="text-3xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
           {t("notFound.title")}

@@ -84,7 +84,9 @@ export async function collectWebVitals(): Promise<WebVitals> {
 
 export function analyzeBundleSize() {
   if (import.meta.env.PROD && window.performance) {
-    const resources = performance.getEntriesByType("resource") as PerformanceResourceTiming[];
+    const resources = performance.getEntriesByType(
+      "resource",
+    ) as PerformanceResourceTiming[];
     const jsResources = resources.filter((r) => r.name.endsWith(".js"));
     const totalSize = jsResources.reduce((acc, r) => acc + r.transferSize, 0);
 
@@ -111,7 +113,10 @@ export function formatBytes(bytes: number, decimals = 2): string {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
 }
 
-export function getMemoryUsage(): { usedJSHeapSize: number; totalJSHeapSize: number } | null {
+export function getMemoryUsage(): {
+  usedJSHeapSize: number;
+  totalJSHeapSize: number;
+} | null {
   // @ts-expect-error - memory 是 Chrome 特有的 API
   const memory = window.performance?.memory;
   if (memory) {

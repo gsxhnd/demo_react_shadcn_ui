@@ -7,9 +7,5 @@ interface SiteLayoutProps {
 }
 
 export function SiteLayout({ children }: SiteLayoutProps) {
-  return (
-    <AppShell>
-      {children || <Outlet />}
-    </AppShell>
-  );
+  return <AppShell>{children || <Outlet />}</AppShell>;
 }

@@ -36,7 +36,7 @@ export function useApiQuery<TData = unknown>(
     queryKey?: QueryKey;
     enabled?: boolean;
     staleTime?: number;
-  }
+  },
 ) {
   return useQuery<TData, AppError>({
     queryKey: options?.queryKey || ["api", url, params],
@@ -55,7 +55,7 @@ export function useApiMutation<TData = unknown, TVariables = unknown>(
   url: string,
   options?: {
     onSuccess?: (data: TData, variables: TVariables) => void;
-  }
+  },
 ) {
   const queryClient = useQueryClient();
 
@@ -63,7 +63,10 @@ export function useApiMutation<TData = unknown, TVariables = unknown>(
     mutationFn: async (data) => {
       let response: ApiResponse<TData>;
       if (method === "delete") {
-        response = await api.delete<TData>(url, data as Record<string, string | number | boolean | undefined>);
+        response = await api.delete<TData>(
+          url,
+          data as Record<string, string | number | boolean | undefined>,
+        );
       } else {
         response = await api[method]<TData>(url, data);
       }
@@ -76,11 +79,16 @@ export function useApiMutation<TData = unknown, TVariables = unknown>(
   });
 }
 
-export function useUserList(params?: Record<string, string | number | boolean | undefined>) {
+export function useUserList(
+  params?: Record<string, string | number | boolean | undefined>,
+) {
   return useQuery({
     queryKey: queryKeys.user.list(params),
     queryFn: async () => {
-      const response = await api.get<{ list: User[]; total: number }>("/users", params);
+      const response = await api.get<{ list: User[]; total: number }>(
+        "/users",
+        params,
+      );
       return response.data;
     },
     placeholderData: keepPreviousData,

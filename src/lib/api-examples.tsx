@@ -357,8 +357,4 @@ export function Dashboard() {
 }
 
 // 导出类型供外部使用
-export type {
-  Post,
-  User,
-  CreatePostData,
-};
+export type { Post, User, CreatePostData };

@@ -23,7 +23,8 @@ export default {
   home: {
     welcome: "ようこそ",
     title: "始めましょう",
-    description: "チームコラボレーションとビジネス拡張のための React フロントエンドテンプレート",
+    description:
+      "チームコラボレーションとビジネス拡張のための React フロントエンドテンプレート",
     countButton: "カウント: {{count}}",
     framework: "フレームワーク",
     build: "ビルド",
@@ -58,7 +59,8 @@ export default {
       hooks: "Hooks",
     },
     apiTitle: "API リクエストラッパー",
-    apiDescription: "Fetch API に基づいた統一されたリクエスト方法で、リクエスト/レスポンスインタ셉タをサポート。",
+    apiDescription:
+      "Fetch API に基づいた統一されたリクエスト方法で、リクエスト/レスポンスインタ셉タをサポート。",
     coreFeatures: "コア機能",
     feature1: "統一されたリクエスト方法 (get, post, put, patch, delete)",
     feature2: "キャッシュ防止のための自動タイムスタンプ",
@@ -67,7 +69,8 @@ export default {
     feature5: "統一されたエラー処理",
     feature6: "TypeScript タイプサポート",
     hooksTitle: "React Query Hooks",
-    hooksDescription: "開発者体験を向上させるために、一般的な React Query hooks をカプセル化しました。",
+    hooksDescription:
+      "開発者体験を向上させるために、一般的な React Query hooks をカプセル化しました。",
     providedHooks: "提供される Hooks",
     useApiQuery: "汎用クエリ hook",
     useApiMutation: "汎用ミューテーション hook",

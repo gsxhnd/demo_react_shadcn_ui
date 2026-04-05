@@ -69,7 +69,9 @@ export function useDelayedLoading(isLoading: boolean, delay = 300) {
     } else {
       setShowLoader(false);
     }
-    return () => { if (timeout) clearTimeout(timeout); };
+    return () => {
+      if (timeout) clearTimeout(timeout);
+    };
   }, [isLoading, delay]);
 
   return showLoader;
@@ -81,14 +83,32 @@ interface LoadingButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   children: React.ReactNode;
 }
 
-export function LoadingButton({ isLoading = false, loadingText, children, disabled, className, ...props }: LoadingButtonProps) {
+export function LoadingButton({
+  isLoading = false,
+  loadingText,
+  children,
+  disabled,
+  className,
+  ...props
+}: LoadingButtonProps) {
   return (
     <button
-      className={cn("relative inline-flex items-center justify-center", "disabled:opacity-50 disabled:cursor-not-allowed", className)}
+      className={cn(
+        "relative inline-flex items-center justify-center",
+        "disabled:opacity-50 disabled:cursor-not-allowed",
+        className,
+      )}
       disabled={disabled || isLoading}
       {...props}
     >
-      {isLoading && <Loader2 className={cn("absolute w-4 h-4 animate-spin", children ? "mr-2" : "")} />}
+      {isLoading && (
+        <Loader2
+          className={cn(
+            "absolute w-4 h-4 animate-spin",
+            children ? "mr-2" : "",
+          )}
+        />
+      )}
       {isLoading && loadingText ? loadingText : children}
     </button>
   );
@@ -101,7 +121,12 @@ interface SkeletonProps {
   height?: string | number;
 }
 
-export function Skeleton({ className, variant = "rounded", width, height }: SkeletonProps) {
+export function Skeleton({
+  className,
+  variant = "rounded",
+  width,
+  height,
+}: SkeletonProps) {
   const variantClass = {
     text: "h-4 w-full",
     circular: "rounded-full aspect-square",
@@ -110,11 +135,20 @@ export function Skeleton({ className, variant = "rounded", width, height }: Skel
   }[variant];
 
   return (
-    <div className={cn("animate-pulse bg-muted", variantClass, className)} style={{ width, height }} />
+    <div
+      className={cn("animate-pulse bg-muted", variantClass, className)}
+      style={{ width, height }}
+    />
   );
 }
 
-export function SkeletonList({ count = 3, height = 60 }: { count?: number; height?: string | number }) {
+export function SkeletonList({
+  count = 3,
+  height = 60,
+}: {
+  count?: number;
+  height?: string | number;
+}) {
   return (
     <div className="space-y-3">
       {Array.from({ length: count }).map((_, i) => (

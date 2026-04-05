@@ -1,7 +1,11 @@
 import { useDispatch } from "react-redux";
 import { Sun, Moon, Monitor } from "lucide-react";
 import type { AppDispatch } from "@/store";
-import { setTheme, toggleTheme, type ThemeMode } from "@/store/slices/themeSlice";
+import {
+  setTheme,
+  toggleTheme,
+  type ThemeMode,
+} from "@/store/slices/themeSlice";
 import {
   DropdownMenu,
   DropdownMenuContent,

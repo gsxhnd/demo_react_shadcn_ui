@@ -241,7 +241,8 @@ const methodColors: Record<string, string> = {
   GET: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
   POST: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
   PUT: "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400",
-  PATCH: "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
+  PATCH:
+    "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
   DELETE: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
 };
 
@@ -346,9 +347,7 @@ function ApiTester({
         </div>
       )}
 
-      {testResult && (
-        <CodeBlock code={testResult} language="json" />
-      )}
+      {testResult && <CodeBlock code={testResult} language="json" />}
 
       {responseExample && !testResult && !error && (
         <div className="space-y-2">
@@ -380,7 +379,7 @@ export function ApiExampleList() {
             className={cn(
               "border rounded-lg overflow-hidden transition-colors",
               "border-slate-200 dark:border-slate-700",
-              "bg-white dark:bg-slate-900"
+              "bg-white dark:bg-slate-900",
             )}
           >
             {/* 标题栏 */}
@@ -391,7 +390,7 @@ export function ApiExampleList() {
               <div
                 className={cn(
                   "p-2 rounded-lg",
-                  "bg-slate-100 dark:bg-slate-800"
+                  "bg-slate-100 dark:bg-slate-800",
                 )}
               >
                 <Icon className="w-5 h-5 text-slate-600 dark:text-slate-400" />
@@ -404,7 +403,7 @@ export function ApiExampleList() {
                   <span
                     className={cn(
                       "px-2 py-0.5 text-xs font-mono font-medium rounded",
-                      methodColors[example.method]
+                      methodColors[example.method],
                     )}
                   >
                     {example.method}

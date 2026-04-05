@@ -58,7 +58,8 @@ export default {
       hooks: "Hooks",
     },
     apiTitle: "API 요청 래퍼",
-    apiDescription: "Fetch API를 기반으로 한 통합된 요청 메서드로 요청/응답 인터셉터를 지원합니다.",
+    apiDescription:
+      "Fetch API를 기반으로 한 통합된 요청 메서드로 요청/응답 인터셉터를 지원합니다.",
     coreFeatures: "핵심 기능",
     feature1: "통합된 요청 메서드 (get, post, put, patch, delete)",
     feature2: "캐시 방지를 위한 자동 타임스탬프",
@@ -67,7 +68,8 @@ export default {
     feature5: "통합된 오류 처리",
     feature6: "TypeScript 타입 지원",
     hooksTitle: "React Query Hooks",
-    hooksDescription: "더 나은 개발 경험을 위해 일반적인 React Query hooks를 캡슐화했습니다.",
+    hooksDescription:
+      "더 나은 개발 경험을 위해 일반적인 React Query hooks를 캡슐화했습니다.",
     providedHooks: "제공되는 Hooks",
     useApiQuery: "범용 쿼리 hook",
     useApiMutation: "범용 변이 hook",

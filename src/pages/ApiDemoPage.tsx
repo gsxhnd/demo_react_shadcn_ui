@@ -34,7 +34,10 @@ function ApiDemoPage() {
               <div className="prose dark:prose-invert max-w-none">
                 <h3>{t("apiDemo.coreFeatures") || "核心特性"}</h3>
                 <ul>
-                  <li>{t("apiDemo.feature1") || "统一的请求方法 (get, post, put, patch, delete)"}</li>
+                  <li>
+                    {t("apiDemo.feature1") ||
+                      "统一的请求方法 (get, post, put, patch, delete)"}
+                  </li>
                   <li>{t("apiDemo.feature2") || "自动添加时间戳防止缓存"}</li>
                   <li>{t("apiDemo.feature3") || "请求/响应拦截器支持"}</li>
                   <li>{t("apiDemo.feature4") || "自动处理 JSON 数据"}</li>
@@ -52,7 +55,8 @@ function ApiDemoPage() {
               <div>
                 <h2 className="text-2xl font-bold mb-2">React Query Hooks</h2>
                 <p className="text-slate-600 dark:text-slate-400">
-                  基于 TanStack Query 封装的 hooks，提供数据缓存、加载状态和错误处理能力。
+                  基于 TanStack Query 封装的
+                  hooks，提供数据缓存、加载状态和错误处理能力。
                   页面级数据获取推荐使用这些 hooks。
                 </p>
               </div>
@@ -61,32 +65,42 @@ function ApiDemoPage() {
                 <h3>{t("apiDemo.providedHooks") || "提供的 Hooks"}</h3>
                 <ul>
                   <li>
-                    <code>useApiQuery</code> - {t("apiDemo.useApiQuery") || "通用的查询 hook"}
+                    <code>useApiQuery</code> -{" "}
+                    {t("apiDemo.useApiQuery") || "通用的查询 hook"}
                   </li>
                   <li>
-                    <code>useApiMutation</code> - {t("apiDemo.useApiMutation") || "通用的突变 hook"}
+                    <code>useApiMutation</code> -{" "}
+                    {t("apiDemo.useApiMutation") || "通用的突变 hook"}
                   </li>
                   <li>
-                    <code>useUserList</code> - {t("apiDemo.useUserList") || "用户列表查询"}
+                    <code>useUserList</code> -{" "}
+                    {t("apiDemo.useUserList") || "用户列表查询"}
                   </li>
                   <li>
-                    <code>useUserDetail</code> - {t("apiDemo.useUserDetail") || "用户详情查询"}
+                    <code>useUserDetail</code> -{" "}
+                    {t("apiDemo.useUserDetail") || "用户详情查询"}
                   </li>
                   <li>
-                    <code>useCreateUser</code> - {t("apiDemo.useCreateUser") || "创建用户"}
+                    <code>useCreateUser</code> -{" "}
+                    {t("apiDemo.useCreateUser") || "创建用户"}
                   </li>
                   <li>
-                    <code>useUpdateUser</code> - {t("apiDemo.useUpdateUser") || "更新用户"}
+                    <code>useUpdateUser</code> -{" "}
+                    {t("apiDemo.useUpdateUser") || "更新用户"}
                   </li>
                   <li>
-                    <code>useDeleteUser</code> - {t("apiDemo.useDeleteUser") || "删除用户"}
+                    <code>useDeleteUser</code> -{" "}
+                    {t("apiDemo.useDeleteUser") || "删除用户"}
                   </li>
                 </ul>
 
                 <h3>{t("apiDemo.queryKeyTitle") || "Query Key 管理"}</h3>
                 <p>
-                  {t("apiDemo.queryKeyDescription") || "使用"} <code>queryKeys</code> {t("apiDemo.queryKeyText") || "工厂统一管理所有 query keys，"}
-                  {t("apiDemo.queryKeyText2") || "确保 key 的一致性和可维护性。"}
+                  {t("apiDemo.queryKeyDescription") || "使用"}{" "}
+                  <code>queryKeys</code>{" "}
+                  {t("apiDemo.queryKeyText") || "工厂统一管理所有 query keys，"}
+                  {t("apiDemo.queryKeyText2") ||
+                    "确保 key 的一致性和可维护性。"}
                 </p>
 
                 <h3>{t("apiDemo.usageExample") || "使用示例"}</h3>

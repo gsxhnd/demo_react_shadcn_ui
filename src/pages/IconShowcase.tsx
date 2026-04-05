@@ -195,7 +195,7 @@ function IconShowcaseItem({
       className={cn(
         "flex flex-col items-center gap-2 p-4 rounded-lg border transition-colors",
         "hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer",
-        "border-slate-200 dark:border-slate-700"
+        "border-slate-200 dark:border-slate-700",
       )}
       onClick={handleCopy}
     >
@@ -226,7 +226,10 @@ function IconSizesDemo() {
       <div className="flex items-center gap-6 flex-wrap">
         {sizes.map((size) => (
           <div key={size} className="flex flex-col items-center gap-2">
-            <Home className="text-slate-700 dark:text-slate-300" style={{ width: size, height: size }} />
+            <Home
+              className="text-slate-700 dark:text-slate-300"
+              style={{ width: size, height: size }}
+            />
             <span className="text-xs text-slate-500">{size}px</span>
           </div>
         ))}
@@ -396,7 +399,7 @@ export function IconShowcase() {
               "px-3 py-1.5 text-sm rounded-full transition-colors",
               activeCategory === category
                 ? "bg-blue-600 text-white"
-                : "bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700"
+                : "bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700",
             )}
           >
             {categoryLabels[category]}

@@ -48,14 +48,15 @@ export function createAppError(
     statusCode?: number;
     details?: Record<string, unknown>;
     isRetryable?: boolean;
-  }
+  },
 ): AppError {
   const error = new Error(message) as AppError;
   error.type = type;
   error.statusCode = options?.statusCode;
   error.details = options?.details;
   // AUTH 和 VALIDATION 错误默认可重试为 false
-  const isAuthOrValidation = type === ErrorType.AUTH || type === ErrorType.VALIDATION;
+  const isAuthOrValidation =
+    type === ErrorType.AUTH || type === ErrorType.VALIDATION;
   error.isRetryable = options?.isRetryable ?? !isAuthOrValidation;
   return error;
 }
@@ -81,7 +82,7 @@ export function handleFetchError(error: unknown): AppError {
   return createAppError(
     error instanceof Error ? error.message : "未知错误",
     ErrorType.UNKNOWN,
-    { isRetryable: true }
+    { isRetryable: true },
   );
 }
 

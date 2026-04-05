@@ -40,7 +40,12 @@ export class ErrorBoundary extends Component<Props, State> {
         return this.props.fallback;
       }
 
-      return <DefaultErrorFallback error={this.state.error} onRetry={this.handleRetry} />;
+      return (
+        <DefaultErrorFallback
+          error={this.state.error}
+          onRetry={this.handleRetry}
+        />
+      );
     }
 
     return this.props.children;
@@ -60,13 +65,13 @@ function DefaultErrorFallback({ error, onRetry }: DefaultErrorFallbackProps) {
       className={cn(
         "flex flex-col items-center justify-center min-h-[400px] p-8",
         "bg-destructive/5 border border-destructive/20 rounded-lg",
-        "text-center"
+        "text-center",
       )}
     >
       <div
         className={cn(
           "flex items-center justify-center w-16 h-16 rounded-full",
-          "bg-destructive/10 mb-6"
+          "bg-destructive/10 mb-6",
         )}
       >
         <AlertTriangle className="w-8 h-8 text-destructive" />
@@ -79,7 +84,7 @@ function DefaultErrorFallback({ error, onRetry }: DefaultErrorFallbackProps) {
       <p className="text-muted-foreground mb-4 max-w-md">
         {t(
           "error.description",
-          "应用程序遇到了一些问题，请尝试刷新页面或返回首页。"
+          "应用程序遇到了一些问题，请尝试刷新页面或返回首页。",
         )}
       </p>
 
@@ -89,7 +94,7 @@ function DefaultErrorFallback({ error, onRetry }: DefaultErrorFallbackProps) {
             "p-4 rounded-lg bg-muted/50 text-left",
             "font-mono text-xs text-muted-foreground",
             "max-w-full overflow-auto mb-4",
-            "border border-border"
+            "border border-border",
           )}
         >
           <p className="font-semibold mb-1">{error.name}</p>

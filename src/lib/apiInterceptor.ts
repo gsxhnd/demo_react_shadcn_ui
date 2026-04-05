@@ -7,7 +7,9 @@ import { ErrorType, handleHttpError } from "./error-handler";
 const abortControllers = new Map<string, AbortController>();
 
 export interface RequestInterceptor {
-  onFulfilled?: (config: RequestConfig) => RequestConfig | Promise<RequestConfig>;
+  onFulfilled?: (
+    config: RequestConfig,
+  ) => RequestConfig | Promise<RequestConfig>;
   onRejected?: (error: unknown) => unknown;
 }
 
@@ -52,7 +54,7 @@ class RequestInterceptorManager {
     for (const interceptor of this.interceptors) {
       if (interceptor.onFulfilled) {
         try {
-          result = await interceptor.onFulfilled(result) as RequestConfig;
+          result = (await interceptor.onFulfilled(result)) as RequestConfig;
         } catch (error) {
           if (interceptor.onRejected) {
             result = interceptor.onRejected(error) as unknown as RequestConfig;

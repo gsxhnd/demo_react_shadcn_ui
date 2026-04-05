@@ -23,7 +23,8 @@ export default {
   home: {
     welcome: "Welcome to",
     title: "Get Started",
-    description: "A React frontend template for team collaboration and business scaling",
+    description:
+      "A React frontend template for team collaboration and business scaling",
     countButton: "Count is {{count}}",
     framework: "Framework",
     build: "Build",
@@ -58,7 +59,8 @@ export default {
       hooks: "Hooks",
     },
     apiTitle: "API Request Wrapper",
-    apiDescription: "Unified request methods based on Fetch API with request/response interceptors.",
+    apiDescription:
+      "Unified request methods based on Fetch API with request/response interceptors.",
     coreFeatures: "Core Features",
     feature1: "Unified request methods (get, post, put, patch, delete)",
     feature2: "Automatic timestamp to prevent caching",
@@ -67,7 +69,8 @@ export default {
     feature5: "Unified error handling",
     feature6: "TypeScript type support",
     hooksTitle: "React Query Hooks",
-    hooksDescription: "Encapsulated common React Query hooks for better developer experience.",
+    hooksDescription:
+      "Encapsulated common React Query hooks for better developer experience.",
     providedHooks: "Provided Hooks",
     useApiQuery: "Generic query hook",
     useApiMutation: "Generic mutation hook",
@@ -90,7 +93,8 @@ export default {
   },
   notFound: {
     title: "Page Not Found",
-    description: "The page you are looking for does not exist or has been removed.",
+    description:
+      "The page you are looking for does not exist or has been removed.",
     backHome: "Back to Home",
     backPrev: "Go Back",
   },

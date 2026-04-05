@@ -20,13 +20,19 @@ interface FeatureCardProps {
   className?: string;
 }
 
-function FeatureCard({ icon: Icon, title, description, href, className }: FeatureCardProps) {
+function FeatureCard({
+  icon: Icon,
+  title,
+  description,
+  href,
+  className,
+}: FeatureCardProps) {
   const content = (
     <div
       className={cn(
         "bg-white dark:bg-slate-800 rounded-lg border shadow-sm p-6 hover:shadow-md transition-shadow",
         href && "cursor-pointer",
-        className
+        className,
       )}
     >
       <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
@@ -35,7 +41,9 @@ function FeatureCard({ icon: Icon, title, description, href, className }: Featur
       <h3 className="text-lg font-semibold mb-2 text-slate-900 dark:text-slate-100">
         {title}
       </h3>
-      <p className="text-sm text-slate-600 dark:text-slate-400">{description}</p>
+      <p className="text-sm text-slate-600 dark:text-slate-400">
+        {description}
+      </p>
     </div>
   );
 
@@ -168,7 +176,9 @@ function HomePage() {
               <span className="font-medium text-sm text-slate-900 dark:text-slate-100">
                 {tech.name}
               </span>
-              <span className="text-xs text-muted-foreground ml-1">v{tech.version}</span>
+              <span className="text-xs text-muted-foreground ml-1">
+                v{tech.version}
+              </span>
             </div>
           ))}
         </div>
@@ -193,9 +203,7 @@ function HomePage() {
       {/* Footer */}
       <footer className="border-t py-8 mt-8">
         <div className="container mx-auto px-4 text-center text-sm text-slate-500 dark:text-slate-400">
-          <p>
-            React v19 + Vite + TypeScript + Tailwind CSS + shadcn/ui
-          </p>
+          <p>React v19 + Vite + TypeScript + Tailwind CSS + shadcn/ui</p>
         </div>
       </footer>
     </div>

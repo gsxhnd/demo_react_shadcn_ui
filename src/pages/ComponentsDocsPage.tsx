@@ -20,11 +20,36 @@ function ComponentsDocsPage() {
       description: "用于触发操作的主要交互元素，支持多种变体和尺寸。",
       importCode: `import { Button } from "@/components/ui/button";`,
       props: [
-        { name: "variant", type: '"default" | "secondary" | "outline" | "ghost" | "destructive" | "link"', default: '"default"', description: "按钮的视觉样式" },
-        { name: "size", type: '"xs" | "sm" | "default" | "lg" | "icon" | "icon-xs" | "icon-sm" | "icon-lg"', default: '"default"', description: "按钮的尺寸大小" },
-        { name: "disabled", type: "boolean", default: "false", description: "是否禁用按钮" },
-        { name: "onClick", type: "() => void", default: "-", description: "点击事件处理函数" },
-        { name: "children", type: "ReactNode", default: "-", description: "按钮内容" },
+        {
+          name: "variant",
+          type: '"default" | "secondary" | "outline" | "ghost" | "destructive" | "link"',
+          default: '"default"',
+          description: "按钮的视觉样式",
+        },
+        {
+          name: "size",
+          type: '"xs" | "sm" | "default" | "lg" | "icon" | "icon-xs" | "icon-sm" | "icon-lg"',
+          default: '"default"',
+          description: "按钮的尺寸大小",
+        },
+        {
+          name: "disabled",
+          type: "boolean",
+          default: "false",
+          description: "是否禁用按钮",
+        },
+        {
+          name: "onClick",
+          type: "() => void",
+          default: "-",
+          description: "点击事件处理函数",
+        },
+        {
+          name: "children",
+          type: "ReactNode",
+          default: "-",
+          description: "按钮内容",
+        },
       ],
       examples: [
         {
@@ -54,11 +79,36 @@ function ComponentsDocsPage() {
       description: "文本输入框组件，用于收集用户输入的单行文本。",
       importCode: `import { Input } from "@/components/ui/input";`,
       props: [
-        { name: "type", type: '"text" | "email" | "password" | "number" | ...', default: '"text"', description: "输入框类型" },
-        { name: "placeholder", type: "string", default: "-", description: "占位提示文本" },
-        { name: "value", type: "string", default: "-", description: "输入框的值（受控）" },
-        { name: "onChange", type: "(e: ChangeEvent) => void", default: "-", description: "值变化事件处理" },
-        { name: "disabled", type: "boolean", default: "false", description: "是否禁用" },
+        {
+          name: "type",
+          type: '"text" | "email" | "password" | "number" | ...',
+          default: '"text"',
+          description: "输入框类型",
+        },
+        {
+          name: "placeholder",
+          type: "string",
+          default: "-",
+          description: "占位提示文本",
+        },
+        {
+          name: "value",
+          type: "string",
+          default: "-",
+          description: "输入框的值（受控）",
+        },
+        {
+          name: "onChange",
+          type: "(e: ChangeEvent) => void",
+          default: "-",
+          description: "值变化事件处理",
+        },
+        {
+          name: "disabled",
+          type: "boolean",
+          default: "false",
+          description: "是否禁用",
+        },
       ],
       examples: [
         {
@@ -87,11 +137,36 @@ function ComponentsDocsPage() {
       description: "多行文本输入组件，用于收集用户的多行文本输入。",
       importCode: `import { Textarea } from "@/components/ui/textarea";`,
       props: [
-        { name: "placeholder", type: "string", default: "-", description: "占位提示文本" },
-        { name: "value", type: "string", default: "-", description: "文本域的值（受控）" },
-        { name: "onChange", type: "(e: ChangeEvent) => void", default: "-", description: "值变化事件处理" },
-        { name: "rows", type: "number", default: "3", description: "显示的行数" },
-        { name: "disabled", type: "boolean", default: "false", description: "是否禁用" },
+        {
+          name: "placeholder",
+          type: "string",
+          default: "-",
+          description: "占位提示文本",
+        },
+        {
+          name: "value",
+          type: "string",
+          default: "-",
+          description: "文本域的值（受控）",
+        },
+        {
+          name: "onChange",
+          type: "(e: ChangeEvent) => void",
+          default: "-",
+          description: "值变化事件处理",
+        },
+        {
+          name: "rows",
+          type: "number",
+          default: "3",
+          description: "显示的行数",
+        },
+        {
+          name: "disabled",
+          type: "boolean",
+          default: "false",
+          description: "是否禁用",
+        },
       ],
       examples: [
         {
@@ -110,13 +185,48 @@ function ComponentsDocsPage() {
       description: "带标签和图标的输入框组合组件，提供更好的输入体验。",
       importCode: `import { InputGroup } from "@/components/ui/input-group";`,
       props: [
-        { name: "label", type: "string", default: "-", description: "输入框标签" },
-        { name: "placeholder", type: "string", default: "-", description: "占位提示文本" },
-        { name: "type", type: "string", default: '"text"', description: "输入框类型" },
-        { name: "leftIcon", type: "ReactNode", default: "-", description: "左侧图标" },
-        { name: "rightIcon", type: "ReactNode", default: "-", description: "右侧图标" },
-        { name: "error", type: "string", default: "-", description: "错误提示文本" },
-        { name: "helperText", type: "string", default: "-", description: "辅助说明文本" },
+        {
+          name: "label",
+          type: "string",
+          default: "-",
+          description: "输入框标签",
+        },
+        {
+          name: "placeholder",
+          type: "string",
+          default: "-",
+          description: "占位提示文本",
+        },
+        {
+          name: "type",
+          type: "string",
+          default: '"text"',
+          description: "输入框类型",
+        },
+        {
+          name: "leftIcon",
+          type: "ReactNode",
+          default: "-",
+          description: "左侧图标",
+        },
+        {
+          name: "rightIcon",
+          type: "ReactNode",
+          default: "-",
+          description: "右侧图标",
+        },
+        {
+          name: "error",
+          type: "string",
+          default: "-",
+          description: "错误提示文本",
+        },
+        {
+          name: "helperText",
+          type: "string",
+          default: "-",
+          description: "辅助说明文本",
+        },
       ],
       examples: [
         {
@@ -159,12 +269,30 @@ function ComponentsDocsPage() {
   DialogTrigger,
 } from "@/components/ui/dialog";`,
       props: [
-        { name: "open", type: "boolean", default: "false", description: "对话框是否打开" },
-        { name: "onOpenChange", type: "(open: boolean) => void", default: "-", description: "打开状态变化回调" },
-        { name: "children", type: "ReactNode", default: "-", description: "对话框内容" },
+        {
+          name: "open",
+          type: "boolean",
+          default: "false",
+          description: "对话框是否打开",
+        },
+        {
+          name: "onOpenChange",
+          type: "(open: boolean) => void",
+          default: "-",
+          description: "打开状态变化回调",
+        },
+        {
+          name: "children",
+          type: "ReactNode",
+          default: "-",
+          description: "对话框内容",
+        },
       ],
       subComponents: [
-        { name: "DialogTrigger", description: "触发对话框打开的元素，使用 asChild 传入子元素" },
+        {
+          name: "DialogTrigger",
+          description: "触发对话框打开的元素，使用 asChild 传入子元素",
+        },
         { name: "DialogContent", description: "对话框的主要内容区域" },
         { name: "DialogHeader", description: "对话框头部区域" },
         { name: "DialogTitle", description: "对话框标题" },
@@ -206,9 +334,24 @@ function ComponentsDocsPage() {
   SelectValue,
 } from "@/components/ui/select";`,
       props: [
-        { name: "value", type: "string", default: "-", description: "当前选中的值（受控）" },
-        { name: "onValueChange", type: "(value: string) => void", default: "-", description: "选中值变化回调" },
-        { name: "children", type: "ReactNode", default: "-", description: "选择器内容" },
+        {
+          name: "value",
+          type: "string",
+          default: "-",
+          description: "当前选中的值（受控）",
+        },
+        {
+          name: "onValueChange",
+          type: "(value: string) => void",
+          default: "-",
+          description: "选中值变化回调",
+        },
+        {
+          name: "children",
+          type: "ReactNode",
+          default: "-",
+          description: "选择器内容",
+        },
       ],
       subComponents: [
         { name: "SelectTrigger", description: "选择器的触发按钮" },
@@ -260,13 +403,36 @@ function ComponentsDocsPage() {
       description: "可搜索的下拉选择器，支持输入过滤和自定义渲染。",
       importCode: `import { Combobox, ComboboxItem } from "@/components/ui/combobox";`,
       props: [
-        { name: "items", type: "ComboboxItem[]", default: "[]", description: "选项列表" },
-        { name: "value", type: "string", default: "-", description: "当前选中的值" },
-        { name: "onValueChange", type: "(value: string) => void", default: "-", description: "选中值变化回调" },
-        { name: "placeholder", type: "string", default: "-", description: "占位提示文本" },
+        {
+          name: "items",
+          type: "ComboboxItem[]",
+          default: "[]",
+          description: "选项列表",
+        },
+        {
+          name: "value",
+          type: "string",
+          default: "-",
+          description: "当前选中的值",
+        },
+        {
+          name: "onValueChange",
+          type: "(value: string) => void",
+          default: "-",
+          description: "选中值变化回调",
+        },
+        {
+          name: "placeholder",
+          type: "string",
+          default: "-",
+          description: "占位提示文本",
+        },
       ],
       types: [
-        { name: "ComboboxItem", properties: "value: string, label: string, description?: string" },
+        {
+          name: "ComboboxItem",
+          properties: "value: string, label: string, description?: string",
+        },
       ],
       examples: [
         {
@@ -291,16 +457,47 @@ function ComponentsDocsPage() {
       description: "选项卡组件，用于在不同的内容面板之间切换。",
       importCode: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";`,
       props: [
-        { name: "defaultValue", type: "string", default: "-", description: "默认选中的标签页" },
-        { name: "value", type: "string", default: "-", description: "当前选中的标签页（受控）" },
-        { name: "onValueChange", type: "(value: string) => void", default: "-", description: "选中标签变化回调" },
-        { name: "orientation", type: '"horizontal" | "vertical"', default: '"horizontal"', description: "标签页方向" },
-        { name: "children", type: "ReactNode", default: "-", description: "标签页内容" },
+        {
+          name: "defaultValue",
+          type: "string",
+          default: "-",
+          description: "默认选中的标签页",
+        },
+        {
+          name: "value",
+          type: "string",
+          default: "-",
+          description: "当前选中的标签页（受控）",
+        },
+        {
+          name: "onValueChange",
+          type: "(value: string) => void",
+          default: "-",
+          description: "选中标签变化回调",
+        },
+        {
+          name: "orientation",
+          type: '"horizontal" | "vertical"',
+          default: '"horizontal"',
+          description: "标签页方向",
+        },
+        {
+          name: "children",
+          type: "ReactNode",
+          default: "-",
+          description: "标签页内容",
+        },
       ],
       subComponents: [
         { name: "TabsList", description: "标签列表容器" },
-        { name: "TabsTrigger", description: "单个标签触发器，使用 value 属性指定关联的 panel" },
-        { name: "TabsContent", description: "标签对应的内容面板，使用 value 属性指定关联的 trigger" },
+        {
+          name: "TabsTrigger",
+          description: "单个标签触发器，使用 value 属性指定关联的 panel",
+        },
+        {
+          name: "TabsContent",
+          description: "标签对应的内容面板，使用 value 属性指定关联的 trigger",
+        },
       ],
       examples: [
         {
@@ -322,10 +519,30 @@ function ComponentsDocsPage() {
       description: "开关组件，用于切换布尔值状态。",
       importCode: `import { Switch } from "@/components/ui/switch";`,
       props: [
-        { name: "checked", type: "boolean", default: "false", description: "开关状态（受控）" },
-        { name: "onCheckedChange", type: "(checked: boolean) => void", default: "-", description: "状态变化回调" },
-        { name: "disabled", type: "boolean", default: "false", description: "是否禁用" },
-        { name: "id", type: "string", default: "-", description: "关联的 label id" },
+        {
+          name: "checked",
+          type: "boolean",
+          default: "false",
+          description: "开关状态（受控）",
+        },
+        {
+          name: "onCheckedChange",
+          type: "(checked: boolean) => void",
+          default: "-",
+          description: "状态变化回调",
+        },
+        {
+          name: "disabled",
+          type: "boolean",
+          default: "false",
+          description: "是否禁用",
+        },
+        {
+          name: "id",
+          type: "string",
+          default: "-",
+          description: "关联的 label id",
+        },
       ],
       examples: [
         {
@@ -347,8 +564,18 @@ function ComponentsDocsPage() {
       description: "分隔线组件，用于视觉上分隔内容。",
       importCode: `import { Separator } from "@/components/ui/separator";`,
       props: [
-        { name: "orientation", type: '"horizontal" | "vertical"', default: '"horizontal"', description: "分隔线方向" },
-        { name: "className", type: "string", default: "-", description: "自定义样式类" },
+        {
+          name: "orientation",
+          type: '"horizontal" | "vertical"',
+          default: '"horizontal"',
+          description: "分隔线方向",
+        },
+        {
+          name: "className",
+          type: "string",
+          default: "-",
+          description: "自定义样式类",
+        },
       ],
       examples: [
         {
@@ -375,7 +602,12 @@ function ComponentsDocsPage() {
       description: "骨架屏组件，用于内容加载时的占位显示。",
       importCode: `import { Skeleton } from "@/components/ui/skeleton";`,
       props: [
-        { name: "className", type: "string", default: "-", description: "自定义样式类，控制宽高等" },
+        {
+          name: "className",
+          type: "string",
+          default: "-",
+          description: "自定义样式类，控制宽高等",
+        },
       ],
       examples: [
         {
@@ -404,9 +636,24 @@ function ComponentsDocsPage() {
   TooltipTrigger,
 } from "@/components/ui/tooltip";`,
       props: [
-        { name: "children", type: "ReactNode", default: "-", description: "触发提示的元素" },
-        { name: "content", type: "ReactNode", default: "-", description: "提示内容" },
-        { name: "side", type: '"top" | "right" | "bottom" | "left"', default: '"top"', description: "提示显示位置" },
+        {
+          name: "children",
+          type: "ReactNode",
+          default: "-",
+          description: "触发提示的元素",
+        },
+        {
+          name: "content",
+          type: "ReactNode",
+          default: "-",
+          description: "提示内容",
+        },
+        {
+          name: "side",
+          type: '"top" | "right" | "bottom" | "left"',
+          default: '"top"',
+          description: "提示显示位置",
+        },
       ],
       examples: [
         {
@@ -465,10 +712,7 @@ function ComponentsDocsPage() {
 
   return (
     <div>
-      <PageHero
-        title="组件文档"
-        description="完整的组件 API 参考和使用指南"
-      />
+      <PageHero title="组件文档" description="完整的组件 API 参考和使用指南" />
 
       <PageSection>
         <Tabs defaultValue="button" className="space-y-6">
@@ -501,7 +745,9 @@ function ComponentsDocsPage() {
                   </h3>
                   <div className="relative bg-slate-900 dark:bg-slate-950 rounded-lg p-4">
                     <button
-                      onClick={() => copyToClipboard(doc.importCode, `import-${doc.id}`)}
+                      onClick={() =>
+                        copyToClipboard(doc.importCode, `import-${doc.id}`)
+                      }
                       className="absolute top-2 right-2 p-2 text-slate-400 hover:text-white transition-colors"
                     >
                       {copiedIndex === `import-${doc.id}` ? (
@@ -624,7 +870,9 @@ function ComponentsDocsPage() {
                       </h4>
                       <div className="relative bg-slate-900 dark:bg-slate-950 rounded-lg p-4">
                         <button
-                          onClick={() => copyToClipboard(example.code, `${doc.id}-${index}`)}
+                          onClick={() =>
+                            copyToClipboard(example.code, `${doc.id}-${index}`)
+                          }
                           className="absolute top-2 right-2 p-2 text-slate-400 hover:text-white transition-colors"
                         >
                           {copiedIndex === `${doc.id}-${index}` ? (
@@ -649,7 +897,10 @@ function ComponentsDocsPage() {
           <p className="mb-2">组件文档</p>
           <p className="text-sm">
             查看组件交互效果：
-            <Link to="/components" className="text-primary hover:underline ml-1">
+            <Link
+              to="/components"
+              className="text-primary hover:underline ml-1"
+            >
               组件示例
             </Link>
           </p>

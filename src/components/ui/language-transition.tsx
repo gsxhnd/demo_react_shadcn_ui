@@ -25,7 +25,7 @@ function LanguageTransition({ children, className }: LanguageTransitionProps) {
       className={cn(
         "transition-all duration-150",
         isTransitioning && "opacity-0 translate-y-1",
-        className
+        className,
       )}
     >
       {children}

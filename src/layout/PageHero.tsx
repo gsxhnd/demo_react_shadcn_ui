@@ -8,12 +8,17 @@ interface PageHeroProps {
   className?: string;
 }
 
-export function PageHero({ title, description, children, className }: PageHeroProps) {
+export function PageHero({
+  title,
+  description,
+  children,
+  className,
+}: PageHeroProps) {
   return (
     <section
       className={cn(
         "bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-12 md:py-16",
-        className
+        className,
       )}
     >
       <div className="container mx-auto px-4">

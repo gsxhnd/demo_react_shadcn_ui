@@ -1,7 +1,5 @@
 import { lazy, Suspense } from "react";
-import {
-    createBrowserRouter,
-} from "react-router";
+import { createBrowserRouter } from "react-router";
 import { SiteLayout } from "@/layout/SiteLayout";
 
 const HomePage = lazy(() => import("@/pages/HomePage"));
@@ -22,35 +20,35 @@ function LoadingFallback() {
 }
 
 const routes = [
-    {
-        element: (
-            <Suspense fallback={<LoadingFallback />}>
-                <SiteLayout />
-            </Suspense>
-        ),
-        children: [
-            {
-                path: "/",
-                element: <HomePage />,
-            },
-            {
-                path: "/api-demo",
-                element: <ApiDemoPage />,
-            },
-            {
-                path: "/components",
-                element: <ComponentsPage />,
-            },
-            {
-                path: "/components/docs",
-                element: <ComponentsDocsPage />,
-            },
-        ],
-    },
-    {
-        path: "*",
-        element: <NotFoundPage />,
-    },
+  {
+    element: (
+      <Suspense fallback={<LoadingFallback />}>
+        <SiteLayout />
+      </Suspense>
+    ),
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/api-demo",
+        element: <ApiDemoPage />,
+      },
+      {
+        path: "/components",
+        element: <ComponentsPage />,
+      },
+      {
+        path: "/components/docs",
+        element: <ComponentsDocsPage />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
+  },
 ];
 
 export const router = createBrowserRouter(routes);

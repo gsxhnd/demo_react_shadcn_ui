@@ -17,7 +17,7 @@ export function DefaultRouteLoader({ routePath }: RouteLoaderProps) {
     <div
       className={cn(
         "flex items-center justify-center min-h-[400px]",
-        "bg-background/50 backdrop-blur-sm"
+        "bg-background/50 backdrop-blur-sm",
       )}
     >
       <div className="flex flex-col items-center gap-3">
@@ -34,7 +34,7 @@ export function DefaultRouteLoader({ routePath }: RouteLoaderProps) {
  * 路由懒加载加载状态组件的工厂函数
  */
 export function createRouteLoader(
-  LoadingComponent?: React.ComponentType<RouteLoaderProps>
+  LoadingComponent?: React.ComponentType<RouteLoaderProps>,
 ) {
   const Loader = LoadingComponent || DefaultRouteLoader;
 
@@ -72,7 +72,7 @@ export function FullPageRouteSuspense({
           className={cn(
             "fixed inset-0 z-50",
             "flex items-center justify-center",
-            "bg-background"
+            "bg-background",
           )}
         >
           <div className="flex flex-col items-center gap-4">
@@ -105,7 +105,10 @@ export function InlineRouteSuspense({
     <Suspense
       fallback={
         <div
-          className={cn("flex items-center justify-center bg-muted/20 rounded-lg", className)}
+          className={cn(
+            "flex items-center justify-center bg-muted/20 rounded-lg",
+            className,
+          )}
           style={{ minHeight }}
         >
           <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />

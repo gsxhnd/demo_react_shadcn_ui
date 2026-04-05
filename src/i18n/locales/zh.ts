@@ -58,7 +58,8 @@ export default {
       hooks: "Hooks 用法",
     },
     apiTitle: "API 请求封装",
-    apiDescription: "基于 Fetch API 封装了统一的请求方法，支持请求/响应拦截器。",
+    apiDescription:
+      "基于 Fetch API 封装了统一的请求方法，支持请求/响应拦截器。",
     coreFeatures: "核心特性",
     feature1: "统一的请求方法 (get, post, put, patch, delete)",
     feature2: "自动添加时间戳防止缓存",

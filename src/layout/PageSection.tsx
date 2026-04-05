@@ -27,7 +27,9 @@ export function PageSection({
               </h2>
             )}
             {description && (
-              <p className="text-slate-600 dark:text-slate-400">{description}</p>
+              <p className="text-slate-600 dark:text-slate-400">
+                {description}
+              </p>
             )}
           </div>
         )}
@@ -52,8 +54,6 @@ export function PageGrid({ children, cols = 3, className }: PageGridProps) {
   };
 
   return (
-    <div className={cn("grid gap-6", colsMap[cols], className)}>
-      {children}
-    </div>
+    <div className={cn("grid gap-6", colsMap[cols], className)}>{children}</div>
   );
 }

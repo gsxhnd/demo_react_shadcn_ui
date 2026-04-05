@@ -21,12 +21,35 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuTrigger, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger } from "@/components/ui/context-menu";
-import { Combobox, ComboboxInput, ComboboxContent, ComboboxList, ComboboxItem, ComboboxGroup, ComboboxLabel } from "@/components/ui/combobox";
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuTrigger,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+} from "@/components/ui/context-menu";
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxContent,
+  ComboboxList,
+  ComboboxItem,
+  ComboboxGroup,
+  ComboboxLabel,
+} from "@/components/ui/combobox";
 import {
   Home,
   Settings,
@@ -200,9 +223,15 @@ function ComponentsPage() {
                   </h3>
                   <div className="flex flex-wrap gap-3">
                     <Button disabled>Default Disabled</Button>
-                    <Button variant="secondary" disabled>Secondary Disabled</Button>
-                    <Button variant="outline" disabled>Outline Disabled</Button>
-                    <Button variant="destructive" disabled>Destructive Disabled</Button>
+                    <Button variant="secondary" disabled>
+                      Secondary Disabled
+                    </Button>
+                    <Button variant="outline" disabled>
+                      Outline Disabled
+                    </Button>
+                    <Button variant="destructive" disabled>
+                      Destructive Disabled
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -232,7 +261,9 @@ function ComponentsPage() {
                     onChange={(e) => setInputValue(e.target.value)}
                   />
                   {inputValue && (
-                    <p className="mt-2 text-sm text-slate-500">输入的值: {inputValue}</p>
+                    <p className="mt-2 text-sm text-slate-500">
+                      输入的值: {inputValue}
+                    </p>
                   )}
                 </div>
 
@@ -327,10 +358,15 @@ function ComponentsPage() {
                         </p>
                       </div>
                       <DialogFooter showCloseButton>
-                        <Button variant="outline" onClick={() => setDialogOpen(false)}>
+                        <Button
+                          variant="outline"
+                          onClick={() => setDialogOpen(false)}
+                        >
                           取消
                         </Button>
-                        <Button onClick={() => setDialogOpen(false)}>确认</Button>
+                        <Button onClick={() => setDialogOpen(false)}>
+                          确认
+                        </Button>
                       </DialogFooter>
                     </DialogContent>
                   </Dialog>
@@ -364,7 +400,9 @@ function ComponentsPage() {
                           <Input type="email" placeholder="请输入邮箱" />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-sm font-medium">个人简介</label>
+                          <label className="text-sm font-medium">
+                            个人简介
+                          </label>
                           <Textarea placeholder="请输入简介" />
                         </div>
                       </div>
@@ -426,7 +464,10 @@ function ComponentsPage() {
                   <h3 className="text-lg font-medium mb-3 text-slate-700 dark:text-slate-200">
                     基本选择器 (Select)
                   </h3>
-                  <Select value={selectValue || undefined} onValueChange={setSelectValue}>
+                  <Select
+                    value={selectValue || undefined}
+                    onValueChange={setSelectValue}
+                  >
                     <SelectTrigger className="w-[200px]">
                       <SelectValue placeholder="选择一个选项" />
                     </SelectTrigger>
@@ -446,7 +487,9 @@ function ComponentsPage() {
                     </SelectContent>
                   </Select>
                   {selectValue && (
-                    <p className="mt-2 text-sm text-slate-500">选择的值: {selectValue}</p>
+                    <p className="mt-2 text-sm text-slate-500">
+                      选择的值: {selectValue}
+                    </p>
                   )}
                 </div>
 
@@ -462,7 +505,10 @@ function ComponentsPage() {
                     <ComboboxContent>
                       <ComboboxList>
                         {frameworks.map((framework) => (
-                          <ComboboxItem key={framework.value} value={framework.value}>
+                          <ComboboxItem
+                            key={framework.value}
+                            value={framework.value}
+                          >
                             {framework.label}
                           </ComboboxItem>
                         ))}
@@ -579,19 +625,28 @@ function ComponentsPage() {
                         checked={switchChecked}
                         onCheckedChange={setSwitchChecked}
                       />
-                      <label htmlFor="notifications" className="text-sm cursor-pointer">
+                      <label
+                        htmlFor="notifications"
+                        className="text-sm cursor-pointer"
+                      >
                         接收通知
                       </label>
                     </div>
                     <div className="flex items-center gap-3">
                       <Switch id="dark-mode" />
-                      <label htmlFor="dark-mode" className="text-sm cursor-pointer">
+                      <label
+                        htmlFor="dark-mode"
+                        className="text-sm cursor-pointer"
+                      >
                         深色模式
                       </label>
                     </div>
                     <div className="flex items-center gap-3">
                       <Switch id="auto-save" defaultChecked />
-                      <label htmlFor="auto-save" className="text-sm cursor-pointer">
+                      <label
+                        htmlFor="auto-save"
+                        className="text-sm cursor-pointer"
+                      >
                         自动保存
                       </label>
                     </div>
@@ -610,19 +665,34 @@ function ComponentsPage() {
                   </h3>
                   <div className="flex flex-wrap gap-3">
                     <Button onClick={() => handleNotify("success")}>
-                      <CheckCircle className="w-4 h-4" data-icon="inline-start" />
+                      <CheckCircle
+                        className="w-4 h-4"
+                        data-icon="inline-start"
+                      />
                       成功提示
                     </Button>
-                    <Button variant="secondary" onClick={() => handleNotify("error")}>
+                    <Button
+                      variant="secondary"
+                      onClick={() => handleNotify("error")}
+                    >
                       <XCircle className="w-4 h-4" data-icon="inline-start" />
                       错误提示
                     </Button>
-                    <Button variant="outline" onClick={() => handleNotify("info")}>
+                    <Button
+                      variant="outline"
+                      onClick={() => handleNotify("info")}
+                    >
                       <Info className="w-4 h-4" data-icon="inline-start" />
                       信息提示
                     </Button>
-                    <Button variant="destructive" onClick={() => handleNotify("warning")}>
-                      <AlertCircle className="w-4 h-4" data-icon="inline-start" />
+                    <Button
+                      variant="destructive"
+                      onClick={() => handleNotify("warning")}
+                    >
+                      <AlertCircle
+                        className="w-4 h-4"
+                        data-icon="inline-start"
+                      />
                       警告提示
                     </Button>
                   </div>
@@ -641,9 +711,7 @@ function ComponentsPage() {
                         <TooltipTrigger>
                           <Button variant="outline">悬停查看</Button>
                         </TooltipTrigger>
-                        <TooltipContent>
-                          这是一个工具提示
-                        </TooltipContent>
+                        <TooltipContent>这是一个工具提示</TooltipContent>
                       </Tooltip>
                       <Tooltip>
                         <TooltipTrigger>
@@ -651,9 +719,7 @@ function ComponentsPage() {
                             <Star className="w-4 h-4" />
                           </Button>
                         </TooltipTrigger>
-                        <TooltipContent>
-                          收藏此项目
-                        </TooltipContent>
+                        <TooltipContent>收藏此项目</TooltipContent>
                       </Tooltip>
                       <Tooltip>
                         <TooltipTrigger>
@@ -661,9 +727,7 @@ function ComponentsPage() {
                             <Settings className="w-4 h-4" />
                           </Button>
                         </TooltipTrigger>
-                        <TooltipContent>
-                          打开设置
-                        </TooltipContent>
+                        <TooltipContent>打开设置</TooltipContent>
                       </Tooltip>
                     </div>
                   </TooltipProvider>
@@ -714,7 +778,10 @@ function ComponentsPage() {
                       </ContextMenuItem>
                       <ContextMenuSub>
                         <ContextMenuSubTrigger>
-                          <Share2 className="w-4 h-4" data-icon="inline-start" />
+                          <Share2
+                            className="w-4 h-4"
+                            data-icon="inline-start"
+                          />
                           分享到
                         </ContextMenuSubTrigger>
                         <ContextMenuSubContent>
@@ -755,7 +822,10 @@ function ComponentsPage() {
                       <ContextMenuSeparator />
                       <ContextMenuSub>
                         <ContextMenuSubTrigger>
-                          <Settings className="w-4 h-4" data-icon="inline-start" />
+                          <Settings
+                            className="w-4 h-4"
+                            data-icon="inline-start"
+                          />
                           设置
                         </ContextMenuSubTrigger>
                         <ContextMenuSubContent>
@@ -767,7 +837,9 @@ function ComponentsPage() {
                           <ContextMenuItem>主题设置</ContextMenuItem>
                           <ContextMenuItem>通知设置</ContextMenuItem>
                           <ContextMenuSub>
-                            <ContextMenuSubTrigger>语言设置</ContextMenuSubTrigger>
+                            <ContextMenuSubTrigger>
+                              语言设置
+                            </ContextMenuSubTrigger>
                             <ContextMenuSubContent>
                               <ContextMenuItem>中文</ContextMenuItem>
                               <ContextMenuItem>English</ContextMenuItem>
@@ -789,7 +861,10 @@ function ComponentsPage() {
           <p className="mb-2">UI 组件示例</p>
           <p className="text-sm">
             查看组件 API 文档：
-            <Link to="/components/docs" className="text-primary hover:underline ml-1">
+            <Link
+              to="/components/docs"
+              className="text-primary hover:underline ml-1"
+            >
               组件文档
             </Link>
           </p>
