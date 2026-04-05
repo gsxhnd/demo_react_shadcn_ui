@@ -1,23 +1,11 @@
-import { LanguageTransition } from "@/components/ui/language-transition";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Copy, Check, Globe } from "lucide-react";
+import { Copy, Check } from "lucide-react";
 import { useState } from "react";
-import { languages } from "@/i18n";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useTranslation } from "react-i18next";
+import { PageHero, PageSection } from "@/layout";
+import { Link } from "react-router";
 
 function ComponentsDocsPage() {
   const [copiedIndex, setCopiedIndex] = useState<string | null>(null);
-  const { i18n } = useTranslation();
-
-  const currentLanguage = languages.find((lang) => lang.code === i18n.language);
 
   const copyToClipboard = (code: string, index: string) => {
     navigator.clipboard.writeText(code);
@@ -476,54 +464,15 @@ function ComponentsDocsPage() {
   ];
 
   return (
-    <LanguageTransition className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      <div className="container mx-auto px-4 py-8">
-        <header className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-50">
-              组件文档
-            </h1>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              完整的组件 API 参考和使用指南
-            </p>
-          </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="outline-none">
-              <Button variant="outline" size="sm" className="gap-2">
-                <Globe className="size-4" />
-                <span className="hidden sm:inline">{currentLanguage?.nativeName}</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="min-w-[160px]">
-              {languages.map((lang) => {
-                const isSelected = i18n.language === lang.code;
-                return (
-                  <DropdownMenuItem
-                    key={lang.code}
-                    onClick={() => i18n.changeLanguage(lang.code)}
-                    className={cn(
-                      "flex items-center justify-between gap-4 cursor-pointer",
-                      isSelected && "bg-accent/50"
-                    )}
-                  >
-                    <span className="flex flex-col">
-                      <span className="text-sm">{lang.nativeName}</span>
-                      <span className="text-xs text-muted-foreground">
-                        {lang.name}
-                      </span>
-                    </span>
-                    {isSelected && (
-                      <Check className="size-4 text-primary flex-shrink-0" />
-                    )}
-                  </DropdownMenuItem>
-                );
-              })}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </header>
+    <div>
+      <PageHero
+        title="组件文档"
+        description="完整的组件 API 参考和使用指南"
+      />
 
+      <PageSection>
         <Tabs defaultValue="button" className="space-y-6">
-          <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-4">
+          <div className="bg-white dark:bg-slate-800 rounded-lg border p-4">
             <TabsList className="w-full flex flex-wrap h-auto">
               {componentDocs.map((doc) => (
                 <TabsTrigger key={doc.id} value={doc.id}>
@@ -535,7 +484,7 @@ function ComponentsDocsPage() {
 
           {componentDocs.map((doc) => (
             <TabsContent key={doc.id} value={doc.id} className="space-y-6">
-              <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
+              <section className="bg-white dark:bg-slate-800 rounded-lg border p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-50">
                     {doc.name}
@@ -696,17 +645,17 @@ function ComponentsDocsPage() {
           ))}
         </Tabs>
 
-        <footer className="text-center mt-12 text-slate-500 dark:text-slate-400">
+        <div className="text-center mt-12 text-slate-500 dark:text-slate-400">
           <p className="mb-2">组件文档</p>
           <p className="text-sm">
             查看组件交互效果：
-            <a href="/components" className="text-primary hover:underline ml-1">
+            <Link to="/components" className="text-primary hover:underline ml-1">
               组件示例
-            </a>
+            </Link>
           </p>
-        </footer>
-      </div>
-    </LanguageTransition>
+        </div>
+      </PageSection>
+    </div>
   );
 }
 

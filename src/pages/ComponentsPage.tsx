@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { LanguageTransition } from "@/components/ui/language-transition";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -29,12 +28,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuTrigger, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger } from "@/components/ui/context-menu";
 import { Combobox, ComboboxInput, ComboboxContent, ComboboxList, ComboboxItem, ComboboxGroup, ComboboxLabel } from "@/components/ui/combobox";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
   Home,
   Settings,
   User,
@@ -52,13 +45,10 @@ import {
   CheckCircle,
   Info,
   XCircle,
-  Globe,
-  Check,
 } from "lucide-react";
 import { toast } from "sonner";
-import { languages } from "@/i18n";
-import { cn } from "@/lib/utils";
-import { useTranslation } from "react-i18next";
+import { PageHero, PageSection } from "@/layout";
+import { Link } from "react-router";
 
 function ComponentsPage() {
   const [inputValue, setInputValue] = useState("");
@@ -66,9 +56,6 @@ function ComponentsPage() {
   const [selectValue, setSelectValue] = useState<string | null>("");
   const [switchChecked, setSwitchChecked] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const { i18n } = useTranslation();
-
-  const currentLanguage = languages.find((lang) => lang.code === i18n.language);
 
   const handleNotify = (type: "success" | "error" | "info" | "warning") => {
     const messages = {
@@ -102,52 +89,13 @@ function ComponentsPage() {
   ];
 
   return (
-    <LanguageTransition className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      <div className="container mx-auto px-4 py-8">
-        <header className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-50">
-              UI 组件示例
-            </h1>
-            <p className="text-slate-600 dark:text-slate-400 mt-1">
-              展示项目中集成的所有 shadcn/ui 组件
-            </p>
-          </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="outline-none">
-              <Button variant="outline" size="sm" className="gap-2">
-                <Globe className="size-4" />
-                <span className="hidden sm:inline">{currentLanguage?.nativeName}</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="min-w-[160px]">
-              {languages.map((lang) => {
-                const isSelected = i18n.language === lang.code;
-                return (
-                  <DropdownMenuItem
-                    key={lang.code}
-                    onClick={() => i18n.changeLanguage(lang.code)}
-                    className={cn(
-                      "flex items-center justify-between gap-4 cursor-pointer",
-                      isSelected && "bg-accent/50"
-                    )}
-                  >
-                    <span className="flex flex-col">
-                      <span className="text-sm">{lang.nativeName}</span>
-                      <span className="text-xs text-muted-foreground">
-                        {lang.name}
-                      </span>
-                    </span>
-                    {isSelected && (
-                      <Check className="size-4 text-primary flex-shrink-0" />
-                    )}
-                  </DropdownMenuItem>
-                );
-              })}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </header>
+    <div>
+      <PageHero
+        title="UI 组件示例"
+        description="展示项目中集成的所有 shadcn/ui 组件"
+      />
 
+      <PageSection>
         <Tabs defaultValue="buttons" className="space-y-6">
           <TabsList>
             <TabsTrigger value="buttons">按钮</TabsTrigger>
@@ -161,7 +109,7 @@ function ComponentsPage() {
 
           {/* 按钮示例 */}
           <TabsContent value="buttons" className="space-y-6">
-            <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
+            <section className="bg-white dark:bg-slate-800 rounded-lg border p-6">
               <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
                 按钮组件 (Button)
               </h2>
@@ -263,7 +211,7 @@ function ComponentsPage() {
 
           {/* 输入框示例 */}
           <TabsContent value="inputs" className="space-y-6">
-            <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
+            <section className="bg-white dark:bg-slate-800 rounded-lg border p-6">
               <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
                 输入框组件 (Input)
               </h2>
@@ -348,7 +296,7 @@ function ComponentsPage() {
 
           {/* 对话框示例 */}
           <TabsContent value="dialogs" className="space-y-6">
-            <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
+            <section className="bg-white dark:bg-slate-800 rounded-lg border p-6">
               <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
                 对话框组件 (Dialog)
               </h2>
@@ -464,7 +412,7 @@ function ComponentsPage() {
 
           {/* 选择器示例 */}
           <TabsContent value="selects" className="space-y-6">
-            <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
+            <section className="bg-white dark:bg-slate-800 rounded-lg border p-6">
               <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
                 选择器组件 (Select & Combobox)
               </h2>
@@ -552,7 +500,7 @@ function ComponentsPage() {
 
           {/* 布局组件示例 */}
           <TabsContent value="layout" className="space-y-6">
-            <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
+            <section className="bg-white dark:bg-slate-800 rounded-lg border p-6">
               <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
                 布局组件 (Separator & Skeleton)
               </h2>
@@ -610,7 +558,7 @@ function ComponentsPage() {
 
           {/* 反馈组件示例 */}
           <TabsContent value="feedback" className="space-y-6">
-            <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
+            <section className="bg-white dark:bg-slate-800 rounded-lg border p-6">
               <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
                 反馈组件 (Switch & Toast)
               </h2>
@@ -726,7 +674,7 @@ function ComponentsPage() {
 
           {/* 导航组件示例 */}
           <TabsContent value="navigation" className="space-y-6">
-            <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
+            <section className="bg-white dark:bg-slate-800 rounded-lg border p-6">
               <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
                 导航组件 (Context Menu)
               </h2>
@@ -837,17 +785,17 @@ function ComponentsPage() {
           </TabsContent>
         </Tabs>
 
-        <footer className="text-center mt-12 text-slate-500 dark:text-slate-400">
+        <div className="text-center mt-12 text-slate-500 dark:text-slate-400">
           <p className="mb-2">UI 组件示例</p>
           <p className="text-sm">
             查看组件 API 文档：
-            <a href="/components/docs" className="text-primary hover:underline ml-1">
+            <Link to="/components/docs" className="text-primary hover:underline ml-1">
               组件文档
-            </a>
+            </Link>
           </p>
-        </footer>
-      </div>
-    </LanguageTransition>
+        </div>
+      </PageSection>
+    </div>
   );
 }
 
