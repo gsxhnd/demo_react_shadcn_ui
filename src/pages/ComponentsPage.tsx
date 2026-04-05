@@ -838,7 +838,13 @@ function ComponentsPage() {
         </Tabs>
 
         <footer className="text-center mt-12 text-slate-500 dark:text-slate-400">
-          <p>UI 组件库示例 - v0.5.0</p>
+          <p className="mb-2">UI 组件示例</p>
+          <p className="text-sm">
+            查看组件 API 文档：
+            <a href="/components/docs" className="text-primary hover:underline ml-1">
+              组件文档
+            </a>
+          </p>
         </footer>
       </div>
     </LanguageTransition>

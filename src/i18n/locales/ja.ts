@@ -23,7 +23,7 @@ export default {
   home: {
     welcome: "ようこそ",
     title: "始めましょう",
-    description: "Vite + TypeScript + Tailwind CSS で構築された最新の React アプリケーション",
+    description: "チームコラボレーションとビジネス拡張のための React フロントエンドテンプレート",
     countButton: "カウント: {{count}}",
     framework: "フレームワーク",
     build: "ビルド",

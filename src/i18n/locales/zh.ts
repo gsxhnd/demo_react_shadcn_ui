@@ -23,7 +23,7 @@ export default {
   home: {
     welcome: "欢迎使用",
     title: "开始使用",
-    description: "基于 Vite + TypeScript + Tailwind CSS 构建的现代化 React 应用",
+    description: "面向团队协作和业务扩展的 React 前端模板",
     countButton: "计数 {{count}}",
     framework: "框架",
     build: "构建",

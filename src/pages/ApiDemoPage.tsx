@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { LanguageTransition } from "@/components/ui/language-transition";
-import { IconShowcase } from "@/pages/IconShowcase";
 import { ApiExampleList } from "@/pages/ApiExampleList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Globe, Check } from "lucide-react";
@@ -57,29 +56,26 @@ function ApiDemoPage() {
       </div>
 
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">{t("apiDemo.title")}</h1>
+        <h1 className="text-3xl font-bold mb-2">接口接入参考</h1>
         <p className="text-slate-600 dark:text-slate-400">
-          {t("apiDemo.description")}
+          模板中 API 封装、图标系统和 Query hooks 的接入方式说明
         </p>
       </div>
 
-      <Tabs defaultValue="icons" className="w-full">
+      <Tabs defaultValue="api" className="w-full">
         <TabsList className="mb-6">
-          <TabsTrigger value="icons">{t("apiDemo.tabs.icons")}</TabsTrigger>
           <TabsTrigger value="api">{t("apiDemo.tabs.api")}</TabsTrigger>
           <TabsTrigger value="hooks">{t("apiDemo.tabs.hooks")}</TabsTrigger>
+          <TabsTrigger value="icons">{t("apiDemo.tabs.icons")}</TabsTrigger>
         </TabsList>
-
-        <TabsContent value="icons">
-          <IconShowcase />
-        </TabsContent>
 
         <TabsContent value="api">
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-bold mb-2">{t("apiDemo.apiTitle") || "API 请求封装"}</h2>
+              <h2 className="text-2xl font-bold mb-2">API 请求封装</h2>
               <p className="text-slate-600 dark:text-slate-400">
-                {t("apiDemo.apiDescription") || "基于 Fetch API 封装了统一的请求方法，支持请求/响应拦截器。"}
+                基于 Fetch API 封装的统一请求方法，支持请求/响应拦截器。
+                项目中所有接口调用均通过此层发起。
               </p>
             </div>
 
@@ -102,9 +98,10 @@ function ApiDemoPage() {
         <TabsContent value="hooks">
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-bold mb-2">{t("apiDemo.hooksTitle") || "React Query Hooks"}</h2>
+              <h2 className="text-2xl font-bold mb-2">React Query Hooks</h2>
               <p className="text-slate-600 dark:text-slate-400">
-                {t("apiDemo.hooksDescription") || "封装了常用的 React Query hooks，提供更好的开发体验。"}
+                基于 TanStack Query 封装的 hooks，提供数据缓存、加载状态和错误处理能力。
+                页面级数据获取推荐使用这些 hooks。
               </p>
             </div>
 

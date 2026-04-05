@@ -23,7 +23,7 @@ export default {
   home: {
     welcome: "환영합니다",
     title: "시작하기",
-    description: "Vite + TypeScript + Tailwind CSS로 구축된 최신 React 애플리케이션",
+    description: "팀 협업과 비즈니스 확장을 위한 React 프론트엔드 템플릿",
     countButton: "카운트: {{count}}",
     framework: "프레임워크",
     build: "빌드",

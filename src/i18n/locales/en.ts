@@ -21,9 +21,9 @@ export default {
     notFound: "404 Not Found",
   },
   home: {
-    welcome: "Welcome",
+    welcome: "Welcome to",
     title: "Get Started",
-    description: "A modern React application built with Vite, TypeScript, and Tailwind CSS",
+    description: "A React frontend template for team collaboration and business scaling",
     countButton: "Count is {{count}}",
     framework: "Framework",
     build: "Build",

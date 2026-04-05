@@ -128,10 +128,10 @@ function HomePage() {
 
           <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
-              v1.0.0 新功能
+              模板核心能力
             </h2>
             <p className="text-slate-600 dark:text-slate-300 mb-4">
-              正式版本 - 核心功能完善
+              项目已集成的工程基础设施
             </p>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
@@ -155,7 +155,7 @@ function HomePage() {
               <div className="flex items-center gap-3">
                 <Check className="w-5 h-5 text-green-600" />
                 <span className="text-sm text-slate-600 dark:text-slate-300">
-                  主题切换（亮色/暗色）
+                  主题切换（亮色/暗色/系统）
                 </span>
               </div>
               <div className="flex items-center gap-3">
@@ -167,7 +167,7 @@ function HomePage() {
               <div className="flex items-center gap-3">
                 <Check className="w-5 h-5 text-green-600" />
                 <span className="text-sm text-slate-600 dark:text-slate-300">
-                  单元测试
+                  Vitest 单元测试
                 </span>
               </div>
             </div>
@@ -175,10 +175,10 @@ function HomePage() {
 
           <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
-              v0.5.0 新功能
+              UI 组件能力
             </h2>
             <p className="text-slate-600 dark:text-slate-300 mb-4">
-              UI 组件库完善
+              基于 shadcn/ui 的组件生态
             </p>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
@@ -210,7 +210,7 @@ function HomePage() {
 
           <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
-              v0.4.0 功能
+              数据与工具链
             </h2>
             <p className="text-slate-600 dark:text-slate-300 mb-4">
               {t("home.i18nFeatures") || "国际化支持（中英日韩）"}

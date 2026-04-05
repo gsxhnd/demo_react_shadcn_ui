@@ -697,7 +697,13 @@ function ComponentsDocsPage() {
         </Tabs>
 
         <footer className="text-center mt-12 text-slate-500 dark:text-slate-400">
-          <p>组件文档 - v0.5.0</p>
+          <p className="mb-2">组件文档</p>
+          <p className="text-sm">
+            查看组件交互效果：
+            <a href="/components" className="text-primary hover:underline ml-1">
+              组件示例
+            </a>
+          </p>
         </footer>
       </div>
     </LanguageTransition>
