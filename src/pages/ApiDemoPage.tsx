@@ -1,17 +1,59 @@
 import { useTranslation } from "react-i18next";
-import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { LanguageTransition } from "@/components/ui/language-transition";
-import { IconShowcase } from "@/components/ui/icon-showcase";
-import { ApiExampleList } from "@/components/ui/api-example-list";
+import { IconShowcase } from "@/pages/IconShowcase";
+import { ApiExampleList } from "@/pages/ApiExampleList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Globe, Check } from "lucide-react";
+import { languages } from "@/i18n";
+import { cn } from "@/lib/utils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 function ApiDemoPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const currentLanguage = languages.find((lang) => lang.code === i18n.language);
 
   return (
     <LanguageTransition className="container py-8 max-w-5xl">
       <div className="flex justify-end mb-4">
-        <LanguageSwitcher />
+        <DropdownMenu>
+          <DropdownMenuTrigger className="outline-none">
+            <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-input bg-background hover:bg-accent hover:text-accent-foreground h-8 px-3 text-sm">
+              <Globe className="size-4" />
+              <span className="hidden sm:inline">{currentLanguage?.nativeName}</span>
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="min-w-[160px]">
+            {languages.map((lang) => {
+              const isSelected = i18n.language === lang.code;
+              return (
+                <DropdownMenuItem
+                  key={lang.code}
+                  onClick={() => i18n.changeLanguage(lang.code)}
+                  className={cn(
+                    "flex items-center justify-between gap-4 cursor-pointer",
+                    isSelected && "bg-accent/50"
+                  )}
+                >
+                  <span className="flex flex-col">
+                    <span className="text-sm">{lang.nativeName}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {lang.name}
+                    </span>
+                  </span>
+                  {isSelected && (
+                    <Check className="size-4 text-primary flex-shrink-0" />
+                  )}
+                </DropdownMenuItem>
+              );
+            })}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
 
       <div className="mb-8">

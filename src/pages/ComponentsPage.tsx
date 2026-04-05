@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { LanguageTransition } from "@/components/ui/language-transition";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,6 +29,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuTrigger, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger } from "@/components/ui/context-menu";
 import { Combobox, ComboboxInput, ComboboxContent, ComboboxList, ComboboxItem, ComboboxGroup, ComboboxLabel } from "@/components/ui/combobox";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
   Home,
   Settings,
   User,
@@ -47,8 +52,13 @@ import {
   CheckCircle,
   Info,
   XCircle,
+  Globe,
+  Check,
 } from "lucide-react";
 import { toast } from "sonner";
+import { languages } from "@/i18n";
+import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 function ComponentsPage() {
   const [inputValue, setInputValue] = useState("");
@@ -56,6 +66,9 @@ function ComponentsPage() {
   const [selectValue, setSelectValue] = useState<string | null>("");
   const [switchChecked, setSwitchChecked] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const { i18n } = useTranslation();
+
+  const currentLanguage = languages.find((lang) => lang.code === i18n.language);
 
   const handleNotify = (type: "success" | "error" | "info" | "warning") => {
     const messages = {
@@ -100,7 +113,39 @@ function ComponentsPage() {
               展示项目中集成的所有 shadcn/ui 组件
             </p>
           </div>
-          <LanguageSwitcher />
+          <DropdownMenu>
+            <DropdownMenuTrigger className="outline-none">
+              <Button variant="outline" size="sm" className="gap-2">
+                <Globe className="size-4" />
+                <span className="hidden sm:inline">{currentLanguage?.nativeName}</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="min-w-[160px]">
+              {languages.map((lang) => {
+                const isSelected = i18n.language === lang.code;
+                return (
+                  <DropdownMenuItem
+                    key={lang.code}
+                    onClick={() => i18n.changeLanguage(lang.code)}
+                    className={cn(
+                      "flex items-center justify-between gap-4 cursor-pointer",
+                      isSelected && "bg-accent/50"
+                    )}
+                  >
+                    <span className="flex flex-col">
+                      <span className="text-sm">{lang.nativeName}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {lang.name}
+                      </span>
+                    </span>
+                    {isSelected && (
+                      <Check className="size-4 text-primary flex-shrink-0" />
+                    )}
+                  </DropdownMenuItem>
+                );
+              })}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </header>
 
         <Tabs defaultValue="buttons" className="space-y-6">

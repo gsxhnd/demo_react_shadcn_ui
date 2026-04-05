@@ -1,11 +1,23 @@
-import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { LanguageTransition } from "@/components/ui/language-transition";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, Globe } from "lucide-react";
 import { useState } from "react";
+import { languages } from "@/i18n";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useTranslation } from "react-i18next";
 
 function ComponentsDocsPage() {
   const [copiedIndex, setCopiedIndex] = useState<string | null>(null);
+  const { i18n } = useTranslation();
+
+  const currentLanguage = languages.find((lang) => lang.code === i18n.language);
 
   const copyToClipboard = (code: string, index: string) => {
     navigator.clipboard.writeText(code);
@@ -475,7 +487,39 @@ function ComponentsDocsPage() {
               完整的组件 API 参考和使用指南
             </p>
           </div>
-          <LanguageSwitcher />
+          <DropdownMenu>
+            <DropdownMenuTrigger className="outline-none">
+              <Button variant="outline" size="sm" className="gap-2">
+                <Globe className="size-4" />
+                <span className="hidden sm:inline">{currentLanguage?.nativeName}</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="min-w-[160px]">
+              {languages.map((lang) => {
+                const isSelected = i18n.language === lang.code;
+                return (
+                  <DropdownMenuItem
+                    key={lang.code}
+                    onClick={() => i18n.changeLanguage(lang.code)}
+                    className={cn(
+                      "flex items-center justify-between gap-4 cursor-pointer",
+                      isSelected && "bg-accent/50"
+                    )}
+                  >
+                    <span className="flex flex-col">
+                      <span className="text-sm">{lang.nativeName}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {lang.name}
+                      </span>
+                    </span>
+                    {isSelected && (
+                      <Check className="size-4 text-primary flex-shrink-0" />
+                    )}
+                  </DropdownMenuItem>
+                );
+              })}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </header>
 
         <Tabs defaultValue="button" className="space-y-6">
