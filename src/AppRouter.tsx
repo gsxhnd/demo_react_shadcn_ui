@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { RouterProvider } from "react-router";
 import { router } from "@/routes";
+import { Toaster } from "@/components/ui/sonner";
 
 function LoadingFallback() {
   return (
@@ -17,6 +18,7 @@ function AppRouter() {
   return (
     <Suspense fallback={<LoadingFallback />}>
       <RouterProvider router={router} />
+      <Toaster />
     </Suspense>
   );
 }
