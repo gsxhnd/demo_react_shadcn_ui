@@ -5,13 +5,14 @@ import {
   keepPreviousData,
   type QueryKey,
 } from "@tanstack/react-query";
-import { api, type ApiError, type ApiResponse } from "./api";
+import { api } from "./api";
+import type { ApiResponse } from "./apiInterceptor";
+import type { AppError } from "./error-handler";
 
 /**
- * Query Key 工厂 - 统一管理 query keys
+ * Query Key 工厂
  */
 export const queryKeys = {
-  // 示例：根据功能模块划分
   user: {
     all: ["user"] as const,
     detail: (id: string) => ["user", "detail", id] as const,
@@ -24,15 +25,10 @@ export const queryKeys = {
     list: (params?: Record<string, unknown>) =>
       ["post", "list", params] as const,
   },
-  // 通用
   custom: (key: string, params?: Record<string, unknown>) =>
     [key, params] as const,
 };
 
-/**
- * useQuery 封装
- * 直接返回 response.data 而不是整个 ApiResponse
- */
 export function useApiQuery<TData = unknown>(
   url: string,
   params?: Record<string, string | number | boolean | undefined>,
@@ -42,7 +38,7 @@ export function useApiQuery<TData = unknown>(
     staleTime?: number;
   }
 ) {
-  return useQuery<TData, ApiError>({
+  return useQuery<TData, AppError>({
     queryKey: options?.queryKey || ["api", url, params],
     queryFn: async () => {
       const response = await api.get<TData>(url, params);
@@ -54,9 +50,6 @@ export function useApiQuery<TData = unknown>(
   });
 }
 
-/**
- * useMutation 封装
- */
 export function useApiMutation<TData = unknown, TVariables = unknown>(
   method: "post" | "put" | "patch" | "delete",
   url: string,
@@ -66,7 +59,7 @@ export function useApiMutation<TData = unknown, TVariables = unknown>(
 ) {
   const queryClient = useQueryClient();
 
-  return useMutation<TData, ApiError, TVariables>({
+  return useMutation<TData, AppError, TVariables>({
     mutationFn: async (data) => {
       let response: ApiResponse<TData>;
       if (method === "delete") {
@@ -83,11 +76,6 @@ export function useApiMutation<TData = unknown, TVariables = unknown>(
   });
 }
 
-/**
- * 预定义查询钩子示例
- */
-
-// 用户列表查询
 export function useUserList(params?: Record<string, string | number | boolean | undefined>) {
   return useQuery({
     queryKey: queryKeys.user.list(params),
@@ -99,9 +87,8 @@ export function useUserList(params?: Record<string, string | number | boolean | 
   });
 }
 
-// 用户详情查询
 export function useUserDetail(id: string) {
-  return useQuery<User, ApiError>({
+  return useQuery<User, AppError>({
     queryKey: queryKeys.user.detail(id),
     queryFn: async () => {
       const response = await api.get<User>(`/users/${id}`);
@@ -111,22 +98,18 @@ export function useUserDetail(id: string) {
   });
 }
 
-// 创建用户
 export function useCreateUser() {
   return useApiMutation<User, CreateUserData>("post", "/users");
 }
 
-// 更新用户
 export function useUpdateUser() {
   return useApiMutation<User, UpdateUserData>("put", "/users");
 }
 
-// 删除用户
 export function useDeleteUser() {
   return useApiMutation<void, string>("delete", "/users");
 }
 
-// 类型定义
 interface User {
   id: string;
   name: string;

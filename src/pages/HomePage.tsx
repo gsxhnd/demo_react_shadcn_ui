@@ -128,6 +128,53 @@ function HomePage() {
 
           <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
+              v1.0.0 新功能
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 mb-4">
+              正式版本 - 核心功能完善
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <Check className="w-5 h-5 text-green-600" />
+                <span className="text-sm text-slate-600 dark:text-slate-300">
+                  完善的错误处理机制
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="w-5 h-5 text-green-600" />
+                <span className="text-sm text-slate-600 dark:text-slate-300">
+                  优化的 API 封装
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="w-5 h-5 text-green-600" />
+                <span className="text-sm text-slate-600 dark:text-slate-300">
+                  加载状态处理
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="w-5 h-5 text-green-600" />
+                <span className="text-sm text-slate-600 dark:text-slate-300">
+                  主题切换（亮色/暗色）
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="w-5 h-5 text-green-600" />
+                <span className="text-sm text-slate-600 dark:text-slate-300">
+                  性能优化（代码分割、懒加载）
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="w-5 h-5 text-green-600" />
+                <span className="text-sm text-slate-600 dark:text-slate-300">
+                  单元测试
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-100">
               v0.5.0 新功能
             </h2>
             <p className="text-slate-600 dark:text-slate-300 mb-4">

@@ -1,46 +1,22 @@
-import type {
-  RequestConfig,
-  ApiResponse,
-  ApiError,
-} from "./apiInterceptor";
-import { requestInterceptorManager } from "./apiInterceptor";
-
 /**
- * API 基础配置
+ * API 请求封装
  */
+import type { RequestConfig, ApiResponse } from "./apiInterceptor";
+import { requestInterceptorManager, responseInterceptorManager, cancelRequest } from "./apiInterceptor";
+import { ErrorType, handleFetchError, createAppError, isAppError } from "./error-handler";
+import type { AppError } from "./error-handler";
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
-/**
- * 错误处理函数
- */
-function createApiError(error: unknown, status?: number, statusText?: string): ApiError {
-  const err = new Error(
-    error instanceof Error ? error.message : "请求失败"
-  ) as ApiError;
-  err.status = status;
-  err.statusText = statusText;
-  if (error instanceof Error && error.stack) {
-    err.stack = error.stack;
-  }
-  return err;
-}
-
-/**
- * 核心请求函数
- */
-async function request<T = unknown>(
-  config: RequestConfig
-): Promise<ApiResponse<T>> {
+async function request<T>(config: RequestConfig): Promise<ApiResponse<T>> {
   try {
-    // 应用请求拦截器
     const finalConfig = await requestInterceptorManager.execute(config);
 
-    // 构建 URL
     let url = `${API_BASE_URL}${finalConfig.url}`;
     if (finalConfig.params) {
       const searchParams = new URLSearchParams();
       Object.entries(finalConfig.params).forEach(([key, value]) => {
-        if (value !== undefined) {
+        if (value !== undefined && value !== null) {
           searchParams.append(key, String(value));
         }
       });
@@ -50,30 +26,30 @@ async function request<T = unknown>(
       }
     }
 
-    // 构建请求选项
     const options: RequestInit = {
       method: finalConfig.method || "GET",
       headers: finalConfig.headers,
     };
 
-    // 添加请求体
     if (finalConfig.data && !["GET", "HEAD"].includes(options.method || "")) {
       options.body = JSON.stringify(finalConfig.data);
     }
 
-    // 发起请求
+    if (finalConfig.signal) {
+      options.signal = finalConfig.signal;
+    }
+
     const response = await fetch(url, options);
 
-    // 解析响应
     let data: T;
     const contentType = response.headers.get("content-type");
     if (contentType?.includes("application/json")) {
       data = await response.json();
     } else {
-      data = (await response.text()) as unknown as T;
+      const text = await response.text();
+      data = text as unknown as T;
     }
 
-    // 构建响应对象
     const apiResponse: ApiResponse<T> = {
       data,
       status: response.status,
@@ -81,104 +57,77 @@ async function request<T = unknown>(
       headers: Object.fromEntries(response.headers.entries()),
     };
 
-    // 检查响应状态
     if (!response.ok) {
-      const error = createApiError(
-        apiResponse.data || response.statusText,
-        response.status,
-        response.statusText
+      const appError = createAppError(
+        (data as { message?: string })?.message || response.statusText,
+        ErrorType.UNKNOWN,
+        { statusCode: response.status }
       );
-      throw error;
+      const handledError = responseInterceptorManager.executeError(appError);
+      throw handledError;
     }
 
-    return apiResponse;
+    const result = responseInterceptorManager.execute(apiResponse);
+    return result as ApiResponse<T>;
   } catch (err) {
-    if (err instanceof Error) {
-      const apiError = err as ApiError;
-      // 错误处理逻辑
-      if (apiError.status === 401) {
-        console.warn("未授权，请重新登录");
-      } else if (apiError.status === 403) {
-        console.warn("没有权限访问该资源");
-      } else if (apiError.status && apiError.status >= 500) {
-        console.error("服务器错误，请稍后重试");
-      }
+    if (err instanceof DOMException && err.name === "AbortError") {
+      const abortError = createAppError("请求已取消", ErrorType.CLIENT, { isRetryable: false });
+      throw abortError;
     }
-    throw err;
+
+    if (isAppError(err)) {
+      handleError(err);
+      throw err;
+    }
+
+    const appError = handleFetchError(err);
+    handleError(appError);
+    throw appError;
+  } finally {
+    if (config.requestId) {
+      cancelRequest(config.requestId);
+    }
   }
 }
 
-/**
- * HTTP 方法封装
- */
+const errorHandlers: Set<(error: AppError) => void> = new Set();
+
+export function onError(handler: (error: AppError) => void): () => void {
+  errorHandlers.add(handler);
+  return () => errorHandlers.delete(handler);
+}
+
+function handleError(error: AppError) {
+  errorHandlers.forEach((handler) => {
+    try {
+      handler(error);
+    } catch {
+      console.error("Error handler threw");
+    }
+  });
+}
+
 export const api = {
-  /**
-   * GET 请求
-   */
-  get: <T = unknown>(
-    url: string,
-    params?: Record<string, string | number | boolean | undefined>
-  ) =>
-    request<T>({
-      url,
-      method: "GET",
-      params,
-    }),
-
-  /**
-   * POST 请求
-   */
-  post: <T = unknown>(url: string, data?: unknown) =>
-    request<T>({
-      url,
-      method: "POST",
-      data,
-    }),
-
-  /**
-   * PUT 请求
-   */
-  put: <T = unknown>(url: string, data?: unknown) =>
-    request<T>({
-      url,
-      method: "PUT",
-      data,
-    }),
-
-  /**
-   * PATCH 请求
-   */
-  patch: <T = unknown>(url: string, data?: unknown) =>
-    request<T>({
-      url,
-      method: "PATCH",
-      data,
-    }),
-
-  /**
-   * DELETE 请求
-   */
-  delete: <T = unknown>(url: string, params?: Record<string, string | number | boolean | undefined>) =>
-    request<T>({
-      url,
-      method: "DELETE",
-      params,
-    }),
-
-  /**
-   * 原始请求方法
-   */
+  get<T>(url: string, params?: Record<string, string | number | boolean | undefined | null>, config?: Partial<RequestConfig>) {
+    return request<T>({ url, method: "GET", params, ...config });
+  },
+  post<T>(url: string, data?: unknown, config?: Partial<RequestConfig>) {
+    return request<T>({ url, method: "POST", data, ...config });
+  },
+  put<T>(url: string, data?: unknown, config?: Partial<RequestConfig>) {
+    return request<T>({ url, method: "PUT", data, ...config });
+  },
+  patch<T>(url: string, data?: unknown, config?: Partial<RequestConfig>) {
+    return request<T>({ url, method: "PATCH", data, ...config });
+  },
+  delete<T>(url: string, params?: Record<string, string | number | boolean | undefined | null>, config?: Partial<RequestConfig>) {
+    return request<T>({ url, method: "DELETE", params, ...config });
+  },
   request,
 };
 
-/**
- * 导出类型
- */
-export type { RequestConfig, ApiResponse, ApiError };
+export type { RequestConfig, ApiResponse };
 
-/**
- * 常用 API 响应类型定义
- */
 export interface PaginationParams {
   page?: number;
   pageSize?: number;
@@ -190,4 +139,12 @@ export interface PaginatedResponse<T> {
   page: number;
   pageSize: number;
   totalPages: number;
+}
+
+export function createPaginationParams(page = 1, pageSize = 10): PaginationParams {
+  return { page, pageSize };
+}
+
+export function parsePaginatedResponse<T>(response: ApiResponse<PaginatedResponse<T>>): PaginatedResponse<T> {
+  return response.data;
 }
